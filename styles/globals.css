@@ -1,0 +1,19 @@
+html, body { margin:0; padding:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; background:#0a0a0a; color:#eee; }
+a { color:#ff4d4d; }
+.wrap { max-width: 760px; margin: 64px auto; padding: 0 20px; text-align: center; }
+h1 { font-size: 40px; margin: 10px 0 6px; letter-spacing: .5px; }
+h2 { font-size: 24px; margin: 0; color: #ff9d9d; font-weight: 600; }
+p { color:#ffbdbd; line-height:1.6; }
+.card { background:#260000; border:1px solid #330000; border-radius:16px; padding:24px; box-shadow: 0 6px 30px rgba(255,0,0,.25); }
+.btn { margin: 16px 0; padding: 14px 22px; border:0; background:#ff0000; color:#ffffff; font-weight:700; border-radius:999px; cursor:pointer; }
+.btn[disabled] { opacity:.6; cursor:not-allowed; }
+.row { display:flex; gap:12px; justify-content:center; align-items:center; flex-wrap:wrap; }
+.input { padding: 12px 14px; border-radius: 10px; border:1px solid #4d0000; background:#0f0f0f; color:#fff; min-width: 160px; }
+.help { font-size: 13px; color:#ff8b8b; }
+.links { margin-top: 12px; }
+.badge { display:inline-block; padding:6px 10px; background:#3a0000; border:1px solid #590000; border-radius:999px; font-size:12px; color:#ff9d9d; margin: 4px; }
+ul { text-align:left; line-height:1.7; }
+.footer { margin-top:48px; font-size:12px; color:#ff7575; }
+.small { font-size: 13px; color:#ff9d9d; }
+.logo { font-weight:900; letter-spacing:1px; }
+.hr { height:1px; background:#1d1d1d; border:0; margin: 24px 0; }
