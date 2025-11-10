@@ -4,8 +4,18 @@ function getStripe() {
   const secretKey = process.env.STRIPE_SECRET_KEY;
   if (!secretKey) {
     // Debug: log available env vars (without values)
-    const envKeys = Object.keys(process.env).filter(k => k.includes('STRIPE'));
-    console.error('STRIPE_SECRET_KEY not found. Available STRIPE env vars:', envKeys);
+    const allEnvKeys = Object.keys(process.env).sort();
+    const stripeEnvKeys = allEnvKeys.filter(k => k.includes('STRIPE'));
+    const nextEnvKeys = allEnvKeys.filter(k => k.startsWith('NEXT_'));
+    
+    console.error('=== ENV DEBUG ===');
+    console.error('STRIPE_SECRET_KEY not found');
+    console.error('Total env vars:', allEnvKeys.length);
+    console.error('STRIPE env vars:', stripeEnvKeys);
+    console.error('NEXT_ env vars:', nextEnvKeys);
+    console.error('All env var keys (first 20):', allEnvKeys.slice(0, 20));
+    console.error('=================');
+    
     throw new Error("STRIPE_SECRET_KEY environment variable is not set. Please check Vercel environment variables and redeploy.");
   }
   return new Stripe(secretKey);
