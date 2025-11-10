@@ -1,6 +1,5 @@
 import Stripe from "stripe";
 import { buffer } from "node:stream/consumers";
-import { getSupabaseClient } from "./_supabase";
 
 export const config = { api: { bodyParser: false } };
 
@@ -22,17 +21,6 @@ export default async function handler(req, res) {
     const session = event.data.object;
     const tier = session.metadata?.tier || "unknown";
     const qty = parseInt(session.metadata?.qty || "1", 10);
-
-    const supabase = getSupabaseClient();
-    if (supabase) {
-      const { error } = await supabase.from("tickets").insert({
-        session_id: session.id,
-        tier,
-        quantity: qty
-      });
-      if (error && error.code != "23505") {
-        console.error("Supabase insert error", error);
-      }
     }
   }
 
