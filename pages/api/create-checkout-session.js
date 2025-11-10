@@ -1,6 +1,12 @@
 import Stripe from "stripe";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+function getStripe() {
+  const secretKey = process.env.STRIPE_SECRET_KEY;
+  if (!secretKey) {
+    throw new Error("STRIPE_SECRET_KEY environment variable is not set");
+  }
+  return new Stripe(secretKey);
+}
 
 const EARLY_BIRD_DEFAULT_CAP = 50;
 
@@ -19,6 +25,7 @@ function getEarlyBirdCap() {
 }
 
 async function getTicketsSoldForTier(tierKey) {
+  const stripe = getStripe();
   let total = 0;
   const sessions = stripe.checkout.sessions.list({ limit: 100 });
 
@@ -42,6 +49,7 @@ async function getTicketsSoldForTier(tierKey) {
 }
 
 async function ensurePromoBenj() {
+  const stripe = getStripe();
   try {
     const existing = await stripe.promotionCodes.list({ code: "benj", limit: 1 });
     if (existing.data && existing.data.length > 0) return existing.data[0];
@@ -82,6 +90,7 @@ export default async function handler(req, res) {
       }
     }
 
+    const stripe = getStripe();
     await ensurePromoBenj();
 
     const baseUrl = getBaseUrl();
