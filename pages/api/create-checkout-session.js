@@ -2,6 +2,15 @@ import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
+function getBaseUrl() {
+  const url = process.env.NEXT_PUBLIC_SITE_URL || '';
+  // Ensure HTTPS in production (not localhost)
+  if (url && !url.includes('localhost') && url.startsWith('http://')) {
+    return url.replace('http://', 'https://');
+  }
+  return url;
+}
+
 async function ensurePromoBenj() {
   try {
     const existing = await stripe.promotionCodes.list({ code: "benj", limit: 1 });
@@ -30,6 +39,7 @@ export default async function handler(req, res) {
 
     await ensurePromoBenj();
 
+    const baseUrl = getBaseUrl();
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
       line_items: [
@@ -42,8 +52,8 @@ export default async function handler(req, res) {
           quantity: qtyInt
         }
       ],
-      success_url: `${process.env.NEXT_PUBLIC_SITE_URL}/success`,
-      cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL}/cancel`,
+      success_url: `${baseUrl}/success`,
+      cancel_url: `${baseUrl}/cancel`,
       billing_address_collection: "auto",
       allow_promotion_codes: true,
       consent_collection: { terms_of_service: "none" },
