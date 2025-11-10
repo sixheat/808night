@@ -122,6 +122,11 @@ export default function Home() {
           &copy; {new Date().getFullYear()} NO SLEEP NOV14
         </div>
       </main>
+      
+      <div className="status-indicator">
+        <span className="status-dot"></span>
+        <span className="status-text">All systems operational</span>
+      </div>
     </>
   );
 }
