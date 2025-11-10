@@ -19,7 +19,7 @@ export default function Home() {
       });
       const data = await r.json();
       if (data?.id) {
-        const stripe = window.Stripe(process.env.NEXT_PUBLIC_STRIPE_PK);
+        const stripe = window.Stripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
         await stripe.redirectToCheckout({ sessionId: data.id });
       } else {
         alert(data?.error || "Something went wrong");
