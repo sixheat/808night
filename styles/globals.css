@@ -36,7 +36,11 @@ ul { text-align:left; line-height:1.7; }
   cursor: pointer;
   max-width: 280px;
 }
-.status-indicator:hover {
+.status-link {
+  text-decoration: none;
+  display: inline-block;
+}
+.status-link:hover .status-indicator {
   transform: translateY(-2px);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
 }

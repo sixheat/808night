@@ -52,18 +52,20 @@ function StatusIndicator() {
   };
 
   return (
-    <div className="status-indicator" style={{ borderColor: status.color }}>
-      <span 
-        className="status-dot" 
-        style={{ 
-          background: status.color,
-          boxShadow: `0 0 8px ${status.color}40`
-        }}
-      ></span>
-      <span className="status-text" style={{ color: status.color }}>
-        {getStatusText()}
-      </span>
-    </div>
+    <a href="/status" className="status-link">
+      <div className="status-indicator" style={{ borderColor: status.color }}>
+        <span 
+          className="status-dot" 
+          style={{ 
+            background: status.color,
+            boxShadow: `0 0 8px ${status.color}40`
+          }}
+        ></span>
+        <span className="status-text" style={{ color: status.color }}>
+          {getStatusText()}
+        </span>
+      </div>
+    </a>
   );
 }
 
