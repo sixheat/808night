@@ -1,5 +1,4 @@
 import Stripe from "stripe";
-import { getSupabaseClient } from "./_supabase";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
@@ -28,21 +27,6 @@ export default async function handler(req, res) {
     if (qtyInt > maxPerOrder) {
       return res.status(400).json({ error: `Max ${maxPerOrder} tickets per order for this tier.` });
     }
-
-    if (isEarly) {
-      const supabase = getSupabaseClient();
-      if (supabase) {
-        const { data, error } = await supabase.from("tickets").select("quantity").eq("tier", "early_bird");
-        if (error) console.error("Supabase read error", error);
-        const sold = (data || []).reduce((sum, r) => sum + (r.quantity || 0), 0);
-        const remaining = 50 - sold;
-        if (remaining <= 0) return res.status(400).json({ error: "Early Bird is sold out." });
-        if (qtyInt > remaining) return res.status(400).json({ error: `Only ${remaining} Early Bird tickets remain.` });
-      } else {
-        console.warn("Supabase not configured; skipping global cap.");
-      }
-    }
-
     await ensurePromoBenj();
 
     const session = await stripe.checkout.sessions.create({
