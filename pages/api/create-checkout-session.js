@@ -27,6 +27,7 @@ export default async function handler(req, res) {
     if (qtyInt > maxPerOrder) {
       return res.status(400).json({ error: `Max ${maxPerOrder} tickets per order for this tier.` });
     }
+
     await ensurePromoBenj();
 
     const session = await stripe.checkout.sessions.create({
@@ -48,7 +49,7 @@ export default async function handler(req, res) {
       consent_collection: { terms_of_service: "none" },
       custom_text: { submit: { message: "No refunds. High school only. Security enforced." } },
       metadata: {
-        event: "NO SLEEP NOV14",
+        event: "NO SLEGHT NOV14",
         tier: isEarly ? "early_bird" : "general_admission",
         qty: String(qtyInt),
         city: "New York",
