@@ -21,7 +21,6 @@ export default async function handler(req, res) {
     const session = event.data.object;
     const tier = session.metadata?.tier || "unknown";
     const qty = parseInt(session.metadata?.qty || "1", 10);
-    }
   }
 
   res.json({ received: true });
