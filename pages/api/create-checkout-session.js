@@ -3,7 +3,10 @@ import Stripe from "stripe";
 function getStripe() {
   const secretKey = process.env.STRIPE_SECRET_KEY;
   if (!secretKey) {
-    throw new Error("STRIPE_SECRET_KEY environment variable is not set");
+    // Debug: log available env vars (without values)
+    const envKeys = Object.keys(process.env).filter(k => k.includes('STRIPE'));
+    console.error('STRIPE_SECRET_KEY not found. Available STRIPE env vars:', envKeys);
+    throw new Error("STRIPE_SECRET_KEY environment variable is not set. Please check Vercel environment variables and redeploy.");
   }
   return new Stripe(secretKey);
 }
