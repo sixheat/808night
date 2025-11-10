@@ -2,6 +2,8 @@ import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
+const EARLY_BIRD_DEFAULT_CAP = 50;
+
 function getBaseUrl() {
   const url = process.env.NEXT_PUBLIC_SITE_URL || '';
   // Ensure HTTPS in production (not localhost)
@@ -9,6 +11,34 @@ function getBaseUrl() {
     return url.replace('http://', 'https://');
   }
   return url;
+}
+
+function getEarlyBirdCap() {
+  const parsed = parseInt(process.env.EARLY_BIRD_CAP || "", 10);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : EARLY_BIRD_DEFAULT_CAP;
+}
+
+async function getTicketsSoldForTier(tierKey) {
+  let total = 0;
+  const sessions = stripe.checkout.sessions.list({ limit: 100 });
+
+  for await (const session of sessions) {
+    const metadataTier = session.metadata?.tier;
+    if (metadataTier !== tierKey) continue;
+
+    const isPaid =
+      session.payment_status === "paid" ||
+      session.payment_status === "no_payment_required" ||
+      session.status === "complete";
+    if (!isPaid) continue;
+
+    const qty = parseInt(session.metadata?.qty || "0", 10);
+    if (Number.isFinite(qty) && qty > 0) {
+      total += qty;
+    }
+  }
+
+  return total;
 }
 
 async function ensurePromoBenj() {
@@ -31,10 +61,25 @@ export default async function handler(req, res) {
     const qtyInt = Math.max(1, Math.min(parseInt(qty || 1, 10), 10));
     const isEarly = tier === "early";
     const unitAmount = isEarly ? 2950 : 4950; // cents
+    const metadataTier = isEarly ? "early_bird" : "general_admission";
+    const earlyBirdCap = getEarlyBirdCap();
 
     const maxPerOrder = isEarly ? 4 : 10;
     if (qtyInt > maxPerOrder) {
       return res.status(400).json({ error: `Max ${maxPerOrder} tickets per order for this tier.` });
+    }
+
+    if (isEarly) {
+      const sold = await getTicketsSoldForTier("early_bird");
+      if (sold >= earlyBirdCap) {
+        return res.status(400).json({ error: "Early Bird tickets are sold out." });
+      }
+      if (sold + qtyInt > earlyBirdCap) {
+        const remaining = Math.max(earlyBirdCap - sold, 0);
+        return res
+          .status(400)
+          .json({ error: `Only ${remaining} Early Bird ticket${remaining === 1 ? "" : "s"} left.` });
+      }
     }
 
     await ensurePromoBenj();
@@ -60,7 +105,7 @@ export default async function handler(req, res) {
       custom_text: { submit: { message: "No refunds. High school only. Security enforced." } },
       metadata: {
         event: "NO SLEGHT NOV14",
-        tier: isEarly ? "early_bird" : "general_admission",
+        tier: metadataTier,
         qty: String(qtyInt),
         city: "New York",
         start: "2025-11-14T21:00:00-05:00"
