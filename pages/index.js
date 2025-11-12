@@ -153,7 +153,7 @@ export default function Home() {
           <hr className="hr" />
 
           <section style={{textAlign:"left"}}>
-            <p><strong>Friday night is calling, and it’s not asking nicely.</strong> NO SLEEP NOV21 is the party everyone is gonna be talking about. If you want a night that actually goes crazy, this is where you need to be.</p>
+            <p><strong>FRIDAY NIGHT IS CALLING, AND IT'S NOT ASKING NICELY.</strong> NO SLEEP NOV21 IS THE PARTY EVERYONE IS GONNA BE TALKING ABOUT. IF YOU WANT A NIGHT THAT ACTUALLY GOES CRAZY, THIS IS WHERE YOU NEED TO BE.</p>
             <p><strong>NYC</strong> — Location drops day of<br/>
             <strong>Friday, November 21</strong> — 9:00 PM until late<br/>
             <strong>HIGH SCHOOL ONLY</strong></p>
