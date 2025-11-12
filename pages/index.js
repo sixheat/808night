@@ -117,7 +117,31 @@ export default function Home() {
   return (
     <>
       <Script src="https://js.stripe.com/v3/" strategy="afterInteractive" />
-      <main className="wrap">
+      {/* Full-page Light Rays Background */}
+      <div style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        zIndex: 0,
+        pointerEvents: 'none'
+      }}>
+        <LightRays
+          raysOrigin="top-center"
+          raysColor="#ff4d4d"
+          raysSpeed={1.5}
+          lightSpread={0.6}
+          rayLength={2.5}
+          followMouse={true}
+          mouseInfluence={0.15}
+          noiseAmount={0.05}
+          distortion={0.03}
+          pulsating={true}
+          fadeDistance={1.5}
+        />
+      </div>
+      <main className="wrap" style={{ position: 'relative', zIndex: 1 }}>
         <div className="card">
           <div className="logo">NO SLEEP</div>
           <h1>NO SLEEP NOV21</h1>
@@ -199,7 +223,7 @@ export default function Home() {
             <FluidGlass mode="lens" />
           </div>
 
-          {/* Light Rays Effect */}
+          {/* Light Rays Effect - Interactive Demo */}
           <div style={{
             marginTop: "48px",
             marginBottom: "48px",
@@ -207,23 +231,40 @@ export default function Home() {
             width: "100%",
             borderRadius: "16px",
             overflow: "hidden",
-            background: "rgba(0, 0, 0, 0.9)",
-            border: "1px solid rgba(255, 77, 77, 0.3)",
-            boxShadow: "0 8px 32px rgba(255,0,0,0.2)",
+            background: "rgba(0, 0, 0, 0.7)",
+            border: "2px solid rgba(255, 77, 77, 0.5)",
+            boxShadow: "0 8px 32px rgba(255,0,0,0.3)",
             position: "relative"
           }}>
             <LightRays
               raysOrigin="top-center"
-              raysColor="#ff4d4d"
-              raysSpeed={1.5}
-              lightSpread={0.8}
-              rayLength={1.2}
+              raysColor="#00ffff"
+              raysSpeed={2.0}
+              lightSpread={0.7}
+              rayLength={1.5}
               followMouse={true}
-              mouseInfluence={0.1}
-              noiseAmount={0.1}
-              distortion={0.05}
+              mouseInfluence={0.2}
+              noiseAmount={0.15}
+              distortion={0.08}
+              pulsating={true}
               className="custom-rays"
             />
+            <div style={{
+              position: 'absolute',
+              bottom: '20px',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              color: '#fff',
+              textAlign: 'center',
+              background: 'rgba(0, 0, 0, 0.6)',
+              padding: '12px 24px',
+              borderRadius: '8px',
+              border: '1px solid rgba(255, 255, 255, 0.2)',
+              fontSize: '14px',
+              pointerEvents: 'none'
+            }}>
+              Move your mouse to interact with the light rays
+            </div>
           </div>
 
           <hr className="hr" />
