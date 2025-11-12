@@ -1,5 +1,6 @@
 import Script from "next/script";
 import { useState, useEffect } from "react";
+import SparkleEffect from "../components/SparkleEffect";
 
 function StatusIndicator() {
   const [status, setStatus] = useState({
@@ -100,6 +101,7 @@ export default function Home() {
   return (
     <>
       <Script src="https://js.stripe.com/v3/" strategy="afterInteractive" />
+      <SparkleEffect />
       <main className="wrap">
         <div className="card">
           <div className="logo">NO SLEEP</div>
