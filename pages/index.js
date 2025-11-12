@@ -1,5 +1,12 @@
 import Script from "next/script";
 import { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
+
+// Dynamically import the 3D component to avoid SSR issues
+const Lanyard = dynamic(() => import("../components/Lanyard"), {
+  ssr: false,
+  loading: () => <div style={{ height: "400px", display: "flex", alignItems: "center", justifyContent: "center", color: "#ff9d9d" }}>Loading 3D animation...</div>
+});
 
 function StatusIndicator() {
   const [status, setStatus] = useState({
@@ -148,6 +155,23 @@ export default function Home() {
 
           <div style={{marginTop: 18}}>
             <img src="/cover.png" alt="NO SLEEP NOV21 cover" style={{width:"100%", maxWidth: "720px", borderRadius: "16px", display:"block", margin:"0 auto", boxShadow:"0 10px 40px rgba(255,0,0,.25)"}}/>
+          </div>
+
+          {/* Interactive 3D Lanyard Component */}
+          <div style={{
+            marginTop: "32px",
+            marginBottom: "32px",
+            height: "400px",
+            width: "100%",
+            maxWidth: "600px",
+            margin: "32px auto",
+            borderRadius: "16px",
+            overflow: "hidden",
+            background: "rgba(0, 0, 0, 0.5)",
+            border: "1px solid rgba(255, 77, 77, 0.3)",
+            boxShadow: "0 8px 32px rgba(255,0,0,0.2)"
+          }}>
+            <Lanyard position={[0, 0, 30]} gravity={[0, -40, 0]} fov={20} transparent={true} />
           </div>
 
           <hr className="hr" />
