@@ -1,7 +1,6 @@
 'use client';
 
 import { useRef, useEffect, useState } from 'react';
-import './LightRays.css';
 
 const DEFAULT_COLOR = '#ffffff';
 
