@@ -103,10 +103,10 @@ export default function Home() {
       <main className="wrap">
         <div className="card">
           <div className="logo">NO SLEEP</div>
-          <h1>NO SLEEP NOV14</h1>
+          <h1>NO SLEEP NOV21</h1>
           <h2>New York · Location drops day of</h2>
           <div className="row" style={{marginTop: 6}}>
-            <span className="badge">Friday, Nov 14</span>
+            <span className="badge">Friday, Nov 21</span>
             <span className="badge">9:00 PM — LATE</span>
             <span className="badge">STRICT SECURITY</span>
             <span className="badge">NO REFUNDS</span>
@@ -114,15 +114,15 @@ export default function Home() {
           </div>
 
           <div style={{marginTop: 18}}>
-            <img src="/cover.png" alt="NO SLEEP NOV14 cover" style={{width:"100%", maxWidth: "720px", borderRadius: "16px", display:"block", margin:"0 auto", boxShadow:"0 10px 40px rgba(255,0,0,.25)"}}/>
+            <img src="/cover.png" alt="NO SLEEP NOV21 cover" style={{width:"100%", maxWidth: "720px", borderRadius: "16px", display:"block", margin:"0 auto", boxShadow:"0 10px 40px rgba(255,0,0,.25)"}}/>
           </div>
 
           <hr className="hr" />
 
           <section style={{textAlign:"left"}}>
-            <p><strong>Friday night is calling, and it’s not asking nicely.</strong> NO SLEEP NOV14 is the party everyone is gonna be talking about. If you want a night that actually goes crazy, this is where you need to be.</p>
+            <p><strong>Friday night is calling, and it’s not asking nicely.</strong> NO SLEEP NOV21 is the party everyone is gonna be talking about. If you want a night that actually goes crazy, this is where you need to be.</p>
             <p><strong>NYC</strong> — Location drops day of<br/>
-            <strong>Friday, November 14</strong> — 9:00 PM until late<br/>
+            <strong>Friday, November 21</strong> — 9:00 PM until late<br/>
             <strong>HIGH SCHOOL ONLY</strong></p>
             <p><strong>Security on-site</strong><br/>
             <strong>Bag checks at entry</strong></p>
@@ -187,7 +187,7 @@ export default function Home() {
         </div>
 
         <div className="footer">
-          &copy; {new Date().getFullYear()} NO SLEEP NOV14
+          &copy; {new Date().getFullYear()} NO SLEEP NOV21
         </div>
       </main>
       

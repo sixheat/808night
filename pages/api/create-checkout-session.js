@@ -113,7 +113,7 @@ export default async function handler(req, res) {
         {
           price_data: {
             currency: "usd",
-            product_data: { name: isEarly ? "NO SLEEP NOV14 — Early Bird" : "NO SLEEP NOV14 — General Admission" },
+            product_data: { name: isEarly ? "NO SLEEP NOV21 — Early Bird" : "NO SLEEP NOV21 — General Admission" },
             unit_amount: unitAmount
           },
           quantity: qtyInt
@@ -126,11 +126,11 @@ export default async function handler(req, res) {
       consent_collection: { terms_of_service: "none" },
       custom_text: { submit: { message: "No refunds. High school only. Security enforced." } },
       metadata: {
-        event: "NO SLEGHT NOV14",
+        event: "NO SLEEP NOV21",
         tier: metadataTier,
         qty: String(qtyInt),
         city: "New York",
-        start: "2025-11-14T21:00:00-05:00"
+        start: "2025-11-21T21:00:00-05:00"
       }
     });
 

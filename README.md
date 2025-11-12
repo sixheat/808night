@@ -1,4 +1,4 @@
-# NO SLEEP NOV14 — Two Tiers + 50 Early Bird Cap + Promo Code (Next.js + Stripe)
+# NO SLEEP NOV21 — Two Tiers + 50 Early Bird Cap + Promo Code (Next.js + Stripe)
 
 Includes:
 - **Early Bird — $29.50** (limit 4/order, **global cap = 50** tracked via Stripe)
