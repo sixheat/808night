@@ -2,10 +2,15 @@ import Script from "next/script";
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 
-// Dynamically import the 3D component to avoid SSR issues
+// Dynamically import the 3D components to avoid SSR issues
 const Lanyard = dynamic(() => import("../components/Lanyard"), {
   ssr: false,
   loading: () => <div style={{ height: "400px", display: "flex", alignItems: "center", justifyContent: "center", color: "#ff9d9d" }}>Loading 3D animation...</div>
+});
+
+const FluidGlass = dynamic(() => import("../components/FluidGlass"), {
+  ssr: false,
+  loading: () => <div style={{ height: "600px", display: "flex", alignItems: "center", justifyContent: "center", color: "#ff9d9d" }}>Loading glass effect...</div>
 });
 
 function StatusIndicator() {
@@ -172,6 +177,21 @@ export default function Home() {
             boxShadow: "0 8px 32px rgba(255,0,0,0.2)"
           }}>
             <Lanyard position={[0, 0, 30]} gravity={[0, -40, 0]} fov={20} transparent={true} />
+          </div>
+
+          {/* Fluid Glass Effect */}
+          <div style={{
+            marginTop: "48px",
+            marginBottom: "48px",
+            height: "600px",
+            width: "100%",
+            borderRadius: "16px",
+            overflow: "hidden",
+            background: "rgba(0, 0, 0, 0.8)",
+            border: "1px solid rgba(255, 77, 77, 0.3)",
+            boxShadow: "0 8px 32px rgba(255,0,0,0.2)"
+          }}>
+            <FluidGlass mode="lens" />
           </div>
 
           <hr className="hr" />
