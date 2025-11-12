@@ -1,7 +1,6 @@
 'use client';
 
 import { useRef, useEffect, useState } from 'react';
-import { Renderer, Program, Triangle, Mesh } from 'ogl';
 import './LightRays.css';
 
 const DEFAULT_COLOR = '#ffffff';
@@ -90,6 +89,9 @@ const LightRays = ({
 
     const initializeWebGL = async () => {
       if (!containerRef.current) return;
+
+      // Dynamically import ogl only on client side
+      const { Renderer, Program, Triangle, Mesh } = await import('ogl');
 
       await new Promise(resolve => setTimeout(resolve, 10));
 
