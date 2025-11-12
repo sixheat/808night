@@ -105,6 +105,39 @@ export default function Home() {
           <div className="logo">NO SLEEP</div>
           <h1>NO SLEEP NOV21</h1>
           <h2>New York · Location drops day of</h2>
+          
+          {/* Special Guest Announcement - Top Priority */}
+          <div style={{
+            marginTop: "20px",
+            marginBottom: "20px",
+            padding: "20px",
+            background: "linear-gradient(135deg, rgba(255,0,0,0.15) 0%, rgba(200,0,0,0.25) 100%)",
+            border: "2px solid #ff4d4d",
+            borderRadius: "16px",
+            textAlign: "center",
+            boxShadow: "0 8px 32px rgba(255,0,0,0.3)"
+          }}>
+            <div style={{
+              fontSize: "24px",
+              fontWeight: "bold",
+              color: "#ff9d9d",
+              marginBottom: "8px",
+              textTransform: "uppercase",
+              letterSpacing: "1px"
+            }}>
+              SPECIAL GUEST… CH**KY* (1M+ FOLLOWERS)
+            </div>
+            <div style={{
+              fontSize: "20px",
+              fontStyle: "italic",
+              color: "#ffbdbd",
+              textTransform: "uppercase",
+              letterSpacing: "0.5px"
+            }}>
+              WHO COULD IT BE?!
+            </div>
+          </div>
+
           <div className="row" style={{marginTop: 6}}>
             <span className="badge">Friday, Nov 21</span>
             <span className="badge">9:00 PM — LATE</span>
@@ -132,10 +165,8 @@ export default function Home() {
             <p className="small">
               The event staff is not responsible for any injuries, lost items, or bad decisions.
               By entering, you agree to follow all rules from security and staff. If you break the rules,
-              you’re out. No warnings. No refunds.
+              you're out. No warnings. No refunds.
             </p>
-            <p style={{marginTop:18}}><strong>SPECIAL GUEST… CH**KY* (1M+ FOLLOWERS)</strong><br/>
-            <em>WHO COULD IT BE?!</em></p>
           </section>
 
           <hr className="hr" />
