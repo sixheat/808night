@@ -13,6 +13,11 @@ const FluidGlass = dynamic(() => import("../components/FluidGlass"), {
   loading: () => <div style={{ height: "600px", display: "flex", alignItems: "center", justifyContent: "center", color: "#ff9d9d" }}>Loading glass effect...</div>
 });
 
+const LightRays = dynamic(() => import("../components/LightRays"), {
+  ssr: false,
+  loading: () => <div style={{ height: "600px", display: "flex", alignItems: "center", justifyContent: "center", color: "#ff9d9d" }}>Loading light rays...</div>
+});
+
 function StatusIndicator() {
   const [status, setStatus] = useState({
     status: "checking",
@@ -192,6 +197,33 @@ export default function Home() {
             boxShadow: "0 8px 32px rgba(255,0,0,0.2)"
           }}>
             <FluidGlass mode="lens" />
+          </div>
+
+          {/* Light Rays Effect */}
+          <div style={{
+            marginTop: "48px",
+            marginBottom: "48px",
+            height: "600px",
+            width: "100%",
+            borderRadius: "16px",
+            overflow: "hidden",
+            background: "rgba(0, 0, 0, 0.9)",
+            border: "1px solid rgba(255, 77, 77, 0.3)",
+            boxShadow: "0 8px 32px rgba(255,0,0,0.2)",
+            position: "relative"
+          }}>
+            <LightRays
+              raysOrigin="top-center"
+              raysColor="#ff4d4d"
+              raysSpeed={1.5}
+              lightSpread={0.8}
+              rayLength={1.2}
+              followMouse={true}
+              mouseInfluence={0.1}
+              noiseAmount={0.1}
+              distortion={0.05}
+              className="custom-rays"
+            />
           </div>
 
           <hr className="hr" />

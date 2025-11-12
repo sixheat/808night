@@ -17,6 +17,7 @@
     "@react-three/rapier": "^1.3.0",
     "three": "^0.158.0",
     "meshline": "^1.3.0",
-    "maath": "^0.10.4"
+    "maath": "^0.10.4",
+    "ogl": "^1.0.0"
   }
 }
