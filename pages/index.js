@@ -66,6 +66,64 @@ function StatusIndicator() {
   );
 }
 
+// Countdown Timer Component
+function CountdownTimer() {
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
+
+  useEffect(() => {
+    const calculateTimeLeft = () => {
+      const eventDate = new Date('2024-11-21T21:00:00-05:00');
+      const now = new Date();
+      const difference = eventDate - now;
+
+      if (difference > 0) {
+        setTimeLeft({
+          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+          minutes: Math.floor((difference / 1000 / 60) % 60),
+          seconds: Math.floor((difference / 1000) % 60),
+        });
+      } else {
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+      }
+    };
+
+    calculateTimeLeft();
+    const interval = setInterval(calculateTimeLeft, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="countdown-timer">
+      <div className="countdown-item">
+        <span className="countdown-value">{timeLeft.days}</span>
+        <span className="countdown-label">Days</span>
+      </div>
+      <span className="countdown-separator">:</span>
+      <div className="countdown-item">
+        <span className="countdown-value">{String(timeLeft.hours).padStart(2, '0')}</span>
+        <span className="countdown-label">Hours</span>
+      </div>
+      <span className="countdown-separator">:</span>
+      <div className="countdown-item">
+        <span className="countdown-value">{String(timeLeft.minutes).padStart(2, '0')}</span>
+        <span className="countdown-label">Minutes</span>
+      </div>
+      <span className="countdown-separator">:</span>
+      <div className="countdown-item">
+        <span className="countdown-value">{String(timeLeft.seconds).padStart(2, '0')}</span>
+        <span className="countdown-label">Seconds</span>
+      </div>
+    </div>
+  );
+}
+
 // Enhanced Audio Visualizer Component
 function AudioVisualizer() {
   const [bars, setBars] = useState([]);
@@ -226,6 +284,10 @@ export default function Home() {
       {/* Ticket Section - Modern Full-Screen Design */}
       <section id="ticket-section" className="ticket-section-modern">
         <div className="ticket-bg-animation"></div>
+        <div className="countdown-container-fixed">
+          <div className="countdown-label-fixed">Event Starts In</div>
+          <CountdownTimer />
+        </div>
         <div className="ticket-grid-container">
           {/* Left Side - Event Details */}
           <div className="ticket-left-panel">
@@ -240,7 +302,7 @@ export default function Home() {
               <span className="event-badge-modern">STRICT SECURITY</span>
               <span className="event-badge-modern">NO REFUNDS</span>
               <span className="event-badge-modern">HIGH SCHOOL ONLY</span>
-            </div>
+          </div>
 
             <div className="special-guest-modern">
               <div className="special-guest-title-modern">
@@ -249,7 +311,7 @@ export default function Home() {
               <div className="special-guest-subtitle-modern">
                 WHO COULD IT BE?!
               </div>
-            </div>
+          </div>
 
             <div className="event-details-modern">
               <p><strong>FRIDAY NIGHT IS CALLING, AND IT'S NOT ASKING NICELY.</strong> NO SLEEP NOV21 IS THE PARTY EVERYONE IS GONNA BE TALKING ABOUT. IF YOU WANT A NIGHT THAT ACTUALLY GOES CRAZY, THIS IS WHERE YOU NEED TO BE.</p>
@@ -294,7 +356,7 @@ export default function Home() {
                     </div>
                     <div className="ticket-description">Standard entry</div>
                   </div>
-                </label>
+            </label>
 
                 <label className={`ticket-card-modern vip-card-modern ${tier === "vip" ? "selected" : ""}`}>
                   <input 
@@ -307,15 +369,17 @@ export default function Home() {
                   />
                   <div className="ticket-radio-custom"></div>
                   <div className="ticket-card-content">
-                    <div className="limited-badge-modern">LIMITED</div>
                     <div className="ticket-card-header">
-                      <strong className="ticket-name">VIP - Skip The Line</strong>
+                      <div className="ticket-header-left">
+                        <strong className="ticket-name">VIP - Skip The Line</strong>
+                        <div className="limited-badge-modern">LIMITED</div>
+                      </div>
                       <span className="ticket-price">$67.67</span>
                     </div>
                     <div className="ticket-description">Fast-track entry · Priority access</div>
                   </div>
-                </label>
-              </div>
+            </label>
+          </div>
 
               <div className="quantity-selector-modern">
                 <label className="quantity-label">Quantity</label>
@@ -330,21 +394,21 @@ export default function Home() {
                   >
                     −
                   </button>
-                  <input
+              <input
                     className="quantity-input-modern"
-                    type="number"
-                    min="1"
+                type="number"
+                min="1"
                     max={10}
-                    step="1"
-                    value={qty}
-                    onChange={(e) => {
+                step="1"
+                value={qty}
+                onChange={(e) => {
                       const v = parseInt(e.target.value || 1, 10);
                       const max = 10;
-                      if (v > max) return setQty(max);
-                      if (v < 1) return setQty(1);
-                      setQty(v);
-                    }}
-                  />
+                  if (v > max) return setQty(max);
+                  if (v < 1) return setQty(1);
+                  setQty(v);
+                }}
+              />
                   <button 
                     className="quantity-btn"
                     type="button"
@@ -357,14 +421,14 @@ export default function Home() {
                   </button>
                 </div>
                 <div className="quantity-limit">Max 10 per order</div>
-              </div>
+          </div>
 
               <button className="checkout-btn-modern" onClick={buy} disabled={loading}>
                 <span className="checkout-text">
                   {loading ? "Processing..." : "Checkout"}
                 </span>
                 <span className="checkout-price">${(PRICES[tier] * qty).toFixed(2)}</span>
-              </button>
+          </button>
 
               <div className="ticket-footer-modern">
                 <div className="ticket-links-modern">
