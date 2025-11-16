@@ -211,14 +211,29 @@ export default function Home() {
     }
   }
 
-  const scrollToTickets = () => {
+  const scrollToTickets = (e) => {
+    if (e) {
+      e.preventDefault();
+    }
     setShowTicketSection(true);
-    setTimeout(() => {
-      const ticketSection = document.getElementById("ticket-section");
-      if (ticketSection) {
-        ticketSection.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    }, 100);
+    
+    // Use requestAnimationFrame for better performance
+    requestAnimationFrame(() => {
+      setTimeout(() => {
+        const ticketSection = document.getElementById("ticket-section");
+        if (ticketSection) {
+          // Get the position of the ticket section
+          const elementPosition = ticketSection.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - 20; // 20px offset from top
+          
+          // Smooth scroll to the ticket section
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth"
+          });
+        }
+      }, 50);
+    });
   };
 
   return (
