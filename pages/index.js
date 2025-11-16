@@ -214,26 +214,51 @@ export default function Home() {
   const scrollToTickets = (e) => {
     if (e) {
       e.preventDefault();
+      e.stopPropagation();
     }
+    
     setShowTicketSection(true);
     
-    // Use requestAnimationFrame for better performance
-    requestAnimationFrame(() => {
-      setTimeout(() => {
-        const ticketSection = document.getElementById("ticket-section");
-        if (ticketSection) {
-          // Get the position of the ticket section
-          const elementPosition = ticketSection.getBoundingClientRect().top;
-          const offsetPosition = elementPosition + window.pageYOffset - 20; // 20px offset from top
+    // Multiple attempts to ensure scroll works
+    const scrollToSection = (attempts = 0) => {
+      const ticketSection = document.getElementById("ticket-section");
+      
+      if (ticketSection) {
+        // Try to find the "Choose Your Ticket" heading for more precise scrolling
+        const ticketTitle = ticketSection.querySelector('.ticket-selection-title');
+        const targetElement = ticketTitle || ticketSection;
+        
+        // Get the position
+        const rect = targetElement.getBoundingClientRect();
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const targetPosition = rect.top + scrollTop - 80; // 80px offset for mobile header
+        
+        // Scroll to the position
+        window.scrollTo({
+          top: targetPosition,
+          behavior: "smooth"
+        });
+        
+        // Verify scroll worked, retry if needed
+        setTimeout(() => {
+          const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+          const distance = Math.abs(currentScroll - targetPosition);
           
-          // Smooth scroll to the ticket section
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: "smooth"
-          });
-        }
-      }, 50);
-    });
+          // If we're more than 100px away, try again
+          if (distance > 100 && attempts < 3) {
+            scrollToSection(attempts + 1);
+          }
+        }, 500);
+      } else if (attempts < 5) {
+        // Element not found yet, try again
+        setTimeout(() => scrollToSection(attempts + 1), 100);
+      }
+    };
+    
+    // Start scrolling after a short delay to ensure DOM is ready
+    setTimeout(() => {
+      scrollToSection(0);
+    }, 100);
   };
 
   return (
