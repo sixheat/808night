@@ -65,32 +65,61 @@ function StatusIndicator() {
   );
 }
 
-// Audio Visualizer Component
+// Enhanced Audio Visualizer Component
 function AudioVisualizer() {
   const [bars, setBars] = useState([]);
+  const [pulse, setPulse] = useState(0);
 
   useEffect(() => {
-    const barCount = 20;
+    const barCount = 30;
     const newBars = Array.from({ length: barCount }, () => ({
-      height: Math.random() * 60 + 20,
-      delay: Math.random() * 0.5,
+      height: Math.random() * 70 + 30,
+      delay: Math.random() * 0.8,
+      speed: Math.random() * 0.5 + 0.5,
     }));
     setBars(newBars);
+
+    // Update bars periodically for dynamic effect
+    const interval = setInterval(() => {
+      setBars(prevBars => prevBars.map(bar => ({
+        ...bar,
+        height: Math.random() * 70 + 30,
+      })));
+    }, 200);
+
+    // Pulse effect
+    const pulseInterval = setInterval(() => {
+      setPulse(prev => (prev + 1) % 3);
+    }, 500);
+
+    return () => {
+      clearInterval(interval);
+      clearInterval(pulseInterval);
+    };
   }, []);
 
   return (
-    <div className="audio-visualizer">
-      {bars.map((bar, i) => (
-        <div
-          key={i}
-          className="visualizer-bar"
-          style={{
-            height: `${bar.height}%`,
-            animationDelay: `${bar.delay}s`,
-          }}
-        />
-      ))}
-    </div>
+    <>
+      <div className="audio-visualizer">
+        {bars.map((bar, i) => (
+          <div
+            key={i}
+            className="visualizer-bar"
+            style={{
+              height: `${bar.height}%`,
+              animationDelay: `${bar.delay}s`,
+              animationDuration: `${bar.speed}s`,
+            }}
+          />
+        ))}
+      </div>
+      <div className="music-pulse" style={{ animationDelay: `${pulse * 0.2}s` }}></div>
+      <div className="music-waves">
+        {[...Array(5)].map((_, i) => (
+          <div key={i} className="wave-circle" style={{ animationDelay: `${i * 0.3}s` }}></div>
+        ))}
+      </div>
+    </>
   );
 }
 
@@ -140,6 +169,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="hero-section">
         <div className="hero-background">
+          <div className="hero-image-bg"></div>
           <div className="hero-overlay"></div>
           <AudioVisualizer />
         </div>
@@ -161,45 +191,6 @@ export default function Home() {
               />
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Shows Section */}
-      <section className="shows-section">
-        <h2 className="shows-title">Shows In New York</h2>
-        <div className="filter-container">
-          <button className="filter-btn">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ marginRight: "8px" }}>
-              <path d="M8 0L10.5 5.5L16 8L10.5 10.5L8 16L5.5 10.5L0 8L5.5 5.5L8 0Z" fill="currentColor"/>
-            </svg>
-            All Genres
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style={{ marginLeft: "8px" }}>
-              <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button>
-          <button className="filter-btn">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ marginRight: "8px" }}>
-              <path d="M8 8C9.10457 8 10 7.10457 10 6C10 4.89543 9.10457 4 8 4C6.89543 4 6 4.89543 6 6C6 7.10457 6.89543 8 8 8Z" fill="currentColor"/>
-              <path d="M8 8V12M3 12H13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-            </svg>
-            All Location
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style={{ marginLeft: "8px" }}>
-              <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button>
-          <button className="filter-btn">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ marginRight: "8px" }}>
-              <rect x="3" y="4" width="10" height="9" rx="1" stroke="currentColor" strokeWidth="1.5"/>
-              <path d="M3 6H13M6 4V2M10 4V2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-            </svg>
-            All Dates
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style={{ marginLeft: "8px" }}>
-              <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button>
-          <button className="find-events-btn" onClick={scrollToTickets}>
-            Find Events
-          </button>
         </div>
       </section>
 
@@ -315,7 +306,10 @@ export default function Home() {
       </section>
 
       <footer className="main-footer">
-        &copy; {new Date().getFullYear()} NO SLEEP NOV21
+        <div className="footer-links">
+          <a href="/about">About</a> · <a href="/terms">Terms</a> · <a href="/refunds">Refunds</a>
+        </div>
+        <div>&copy; {new Date().getFullYear()} NO SLEEP NOV21</div>
       </footer>
       
       <StatusIndicator />
