@@ -86,8 +86,9 @@ export default async function handler(req, res) {
     }
     
     const qtyInt = Math.max(1, Math.min(parseInt(qty || 1, 10), 10));
-    const unitAmount = 4141; // cents ($41.41)
-    const metadataTier = "general_admission";
+    const isVip = tier === "vip";
+    const unitAmount = isVip ? 6767 : 4141; // cents ($67.67 for VIP, $41.41 for GA)
+    const metadataTier = isVip ? "vip_skip_line" : "general_admission";
 
     const maxPerOrder = 10;
     if (qtyInt > maxPerOrder) {
@@ -104,7 +105,7 @@ export default async function handler(req, res) {
         {
           price_data: {
             currency: "usd",
-            product_data: { name: "NO SLEEP NOV21 — General Admission" },
+            product_data: { name: isVip ? "NO SLEEP NOV21 — VIP - Skip The Line" : "NO SLEEP NOV21 — General Admission" },
             unit_amount: unitAmount
           },
           quantity: qtyInt

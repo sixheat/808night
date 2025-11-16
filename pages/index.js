@@ -71,10 +71,10 @@ function StatusIndicator() {
 
 export default function Home() {
   const [loading, setLoading] = useState(false);
-  const [tier, setTier] = useState("ga"); // "ga" only (early bid closed)
+  const [tier, setTier] = useState("ga"); // "ga" | "vip"
   const [qty, setQty] = useState(1);
 
-  const PRICES = { ga: 41.41 };
+  const PRICES = { ga: 41.41, vip: 67.67 };
   const total = (PRICES[tier] * qty).toFixed(2);
 
   async function buy() {
@@ -172,11 +172,84 @@ export default function Home() {
           <hr className="hr" />
 
           <h2 style={{textAlign:"center"}}>Choose Your Ticket</h2>
-          <div className="row" style={{marginTop:12}}>
-            <label className="card" style={{cursor:"pointer", textAlign:"left", maxWidth:340}}>
+          <div className="row" style={{marginTop:12, gap: "16px", flexWrap: "wrap", justifyContent: "center"}}>
+            <label className="card" style={{cursor:"pointer", textAlign:"left", maxWidth:340, position: "relative"}}>
               <input type="radio" name="tier" value="ga" checked={tier === "ga"} onChange={() => setTier("ga")} />{" "}
               <strong>General Admission — $41.41</strong>
               <div className="small">Standard entry</div>
+            </label>
+            <label 
+              className="card" 
+              style={{
+                cursor:"pointer", 
+                textAlign:"left", 
+                maxWidth:340, 
+                position: "relative",
+                background: tier === "vip" 
+                  ? "linear-gradient(135deg, rgba(255,215,0,0.25) 0%, rgba(255,165,0,0.3) 50%, rgba(255,215,0,0.25) 100%)"
+                  : "linear-gradient(135deg, rgba(255,215,0,0.08) 0%, rgba(255,165,0,0.12) 50%, rgba(255,215,0,0.08) 100%)",
+                border: tier === "vip" ? "2px solid #ffd700" : "2px solid rgba(255,215,0,0.4)",
+                boxShadow: tier === "vip" 
+                  ? "0 0 40px rgba(255,215,0,0.6), 0 8px 32px rgba(255,215,0,0.4), inset 0 0 30px rgba(255,215,0,0.15), 0 0 60px rgba(255,215,0,0.3)"
+                  : "0 0 20px rgba(255,215,0,0.3), 0 4px 16px rgba(255,215,0,0.2), inset 0 0 15px rgba(255,215,0,0.08)",
+                transform: tier === "vip" ? "scale(1.03)" : "scale(1)",
+                transition: "all 0.3s ease",
+                overflow: "visible"
+              }}
+            >
+              {/* Spotlight effect overlay */}
+              <div style={{
+                position: "absolute",
+                top: "-50%",
+                left: "50%",
+                transform: "translateX(-50%)",
+                width: "200%",
+                height: "200%",
+                background: "radial-gradient(circle, rgba(255,215,0,0.15) 0%, transparent 70%)",
+                pointerEvents: "none",
+                opacity: tier === "vip" ? 1 : 0.6,
+                transition: "opacity 0.3s ease"
+              }} />
+              <div style={{
+                position: "absolute",
+                top: "-8px",
+                right: "12px",
+                background: "linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%)",
+                color: "#fff",
+                padding: "4px 12px",
+                borderRadius: "12px",
+                fontSize: "11px",
+                fontWeight: "bold",
+                textTransform: "uppercase",
+                letterSpacing: "0.5px",
+                boxShadow: "0 4px 12px rgba(255,107,107,0.4)",
+                zIndex: 1
+              }}>
+                LIMITED
+              </div>
+              <input 
+                type="radio" 
+                name="tier" 
+                value="vip" 
+                checked={tier === "vip"} 
+                onChange={() => setTier("vip")} 
+                style={{position: "relative", zIndex: 1}}
+              />{" "}
+              <strong style={{
+                color: tier === "vip" ? "#ffd700" : "#ffed4e",
+                textShadow: tier === "vip" ? "0 0 10px rgba(255,215,0,0.5)" : "0 0 5px rgba(255,215,0,0.3)",
+                position: "relative",
+                zIndex: 1
+              }}>
+                VIP - Skip The Line — $67.67
+              </strong>
+              <div className="small" style={{
+                color: tier === "vip" ? "#ffed4e" : "rgba(255,237,78,0.8)",
+                position: "relative",
+                zIndex: 1
+              }}>
+                Fast-track entry · Priority access
+              </div>
             </label>
           </div>
 
