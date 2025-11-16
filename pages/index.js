@@ -137,38 +137,6 @@ export default function Home() {
     <>
       <Script src="https://js.stripe.com/v3/" strategy="afterInteractive" />
       
-      {/* Header */}
-      <header className="main-header">
-        <div className="header-content">
-          <div className="logo-section">
-            <span className="logo-l">L</span>
-            <span className="logo-v">V</span>
-            <span className="logo-text">NO SLEEP</span>
-          </div>
-          <nav className="main-nav">
-            <a href="#events">All Events</a>
-            <a href="#festivals">Festivals</a>
-            <a href="#comedy">Comedy</a>
-            <a href="#week">Event Week</a>
-          </nav>
-          <div className="header-actions">
-            <button className="icon-btn" aria-label="Search">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                <path d="M9 17A8 8 0 1 0 9 1a8 8 0 0 0 0 16zm0-2a6 6 0 1 1 0-12 6 6 0 0 1 0 12z" fill="currentColor"/>
-                <path d="M13.5 13.5l4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-              </svg>
-            </button>
-            <button className="icon-btn" aria-label="Language">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                <circle cx="10" cy="10" r="8" stroke="currentColor" strokeWidth="1.5"/>
-                <path d="M10 2a12.5 12.5 0 0 1 0 16M10 2a12.5 12.5 0 0 0 0 16M2 10h16" stroke="currentColor" strokeWidth="1.5"/>
-              </svg>
-            </button>
-            <button className="login-btn">Log In</button>
-          </div>
-        </div>
-      </header>
-
       {/* Hero Section */}
       <section className="hero-section">
         <div className="hero-background">
