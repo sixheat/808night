@@ -1,4 +1,5 @@
 import Script from "next/script";
+import Head from "next/head";
 import { useState, useEffect } from "react";
 
 function StatusIndicator() {
@@ -164,6 +165,9 @@ export default function Home() {
 
   return (
     <>
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+      </Head>
       <Script src="https://js.stripe.com/v3/" strategy="afterInteractive" />
       
       {/* Hero Section */}

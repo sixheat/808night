@@ -6,6 +6,13 @@ html, body {
   color: #eee; 
   overflow-x: hidden; 
   scroll-behavior: smooth;
+  width: 100%;
+  max-width: 100vw;
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
 a { 
@@ -53,6 +60,7 @@ a:hover {
   background-position: center center;
   background-repeat: no-repeat;
   z-index: 1;
+  min-height: 100vh;
 }
 
 .hero-overlay {
@@ -71,6 +79,7 @@ a:hover {
   text-align: center;
   padding: 40px 20px;
   max-width: 800px;
+  width: 100%;
 }
 
 .hero-title {
@@ -81,6 +90,8 @@ a:hover {
   letter-spacing: 2px;
   text-transform: uppercase;
   text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  word-wrap: break-word;
+  line-height: 1.1;
 }
 
 .hero-description {
@@ -91,6 +102,8 @@ a:hover {
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
+  padding: 0 10px;
+  word-wrap: break-word;
 }
 
 .hero-cta {
@@ -293,6 +306,8 @@ a:hover {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  min-width: 0;
+  word-wrap: break-word;
 }
 
 .event-date {
@@ -300,6 +315,7 @@ a:hover {
   font-weight: 700;
   color: #ff0000;
   margin-bottom: 2px;
+  word-wrap: break-word;
 }
 
 .event-name {
@@ -309,12 +325,15 @@ a:hover {
   margin: 0;
   text-transform: uppercase;
   letter-spacing: 1.5px;
+  word-wrap: break-word;
+  line-height: 1.2;
 }
 
 .event-performers {
   font-size: 16px;
   color: #ffbdbd;
   opacity: 0.95;
+  word-wrap: break-word;
 }
 
 .event-location {
@@ -323,6 +342,8 @@ a:hover {
   display: flex;
   align-items: center;
   margin-top: 4px;
+  word-wrap: break-word;
+  flex-wrap: wrap;
 }
 
 .get-ticket-btn {
@@ -360,11 +381,15 @@ a:hover {
   background: #0a0a0a;
   padding: 80px 20px;
   min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .ticket-container {
   max-width: 900px;
   margin: 0 auto;
+  width: 100%;
+  padding: 0;
 }
 
 .event-details-card {
@@ -373,6 +398,9 @@ a:hover {
   border-radius: 16px;
   padding: 40px;
   box-shadow: 0 6px 30px rgba(255, 0, 0, 0.25);
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 .event-badges {
@@ -402,8 +430,10 @@ a:hover {
 .event-image {
   width: 100%;
   max-width: 720px;
+  height: auto;
   border-radius: 16px;
   box-shadow: 0 10px 40px rgba(255, 0, 0, 0.25);
+  object-fit: contain;
 }
 
 .special-guest-announcement {
@@ -849,52 +879,177 @@ a:hover {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .hero-section {
+    min-height: 100vh;
+    padding: 20px 0;
+  }
+
+  .hero-content {
+    padding: 20px 15px;
+  }
+
   .hero-title {
-    font-size: 48px;
+    font-size: 36px;
+    letter-spacing: 1px;
+    margin: 0 0 16px 0;
+    padding: 0 10px;
   }
 
   .hero-description {
-    font-size: 16px;
+    font-size: 14px;
+    padding: 0 15px;
+    margin: 0 0 24px 0;
+  }
+
+  .hero-cta {
+    padding: 12px 30px;
+    font-size: 14px;
+  }
+
+  .hero-image-bg {
+    background-size: cover;
+    background-position: center center;
+  }
+
+  .upcoming-events-section {
+    padding: 40px 15px;
   }
 
   .upcoming-events-title {
-    font-size: 32px;
+    font-size: 28px;
+    margin: 0 0 20px 0;
+    padding: 0 10px;
   }
 
   .events-month {
-    font-size: 20px;
+    font-size: 18px;
+    margin-bottom: 20px;
   }
 
   .event-card {
     flex-direction: column;
     align-items: stretch;
     gap: 0;
+    margin: 0;
   }
 
   .event-card-details {
-    padding: 24px;
+    padding: 20px;
+    width: 100%;
+  }
+
+  .event-date {
+    font-size: 16px;
   }
 
   .event-name {
-    font-size: 24px;
+    font-size: 22px;
+    letter-spacing: 1px;
+    line-height: 1.3;
+  }
+
+  .event-performers {
+    font-size: 14px;
+  }
+
+  .event-location {
+    font-size: 13px;
   }
 
   .get-ticket-btn {
-    width: calc(100% - 48px);
-    height: 60px;
+    width: calc(100% - 40px);
+    height: 56px;
     border-radius: 8px;
-    margin: 0 24px 24px 24px;
+    margin: 0 20px 20px 20px;
     align-self: center;
+    font-size: 12px;
+  }
+
+  .ticket-section {
+    padding: 40px 15px;
+  }
+
+  .event-details-card {
+    padding: 24px 20px;
+  }
+
+  .event-badges {
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+
+  .event-badge {
+    font-size: 11px;
+    padding: 5px 10px;
+  }
+
+  .event-image-container {
+    margin: 20px 0;
+  }
+
+  .event-image {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .special-guest-announcement {
+    margin: 24px 0;
+    padding: 20px 15px;
+  }
+
+  .special-guest-title {
+    font-size: 18px;
+  }
+
+  .special-guest-subtitle {
+    font-size: 16px;
+  }
+
+  .event-info {
+    margin: 24px 0;
+    font-size: 14px;
+  }
+
+  .event-info p {
+    margin: 12px 0;
+  }
+
+  .ticket-selection {
+    margin-top: 30px;
+    padding-top: 30px;
+  }
+
+  .ticket-selection h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
   }
 
   .ticket-options {
     flex-direction: column;
     align-items: center;
+    gap: 16px;
   }
 
   .ticket-option {
     width: 100%;
     max-width: 100%;
+    padding: 16px;
+  }
+
+  .quantity-selector {
+    margin: 20px 0;
+  }
+
+  .quantity-input {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .checkout-btn {
+    width: 100%;
+    padding: 14px 20px;
+    font-size: 14px;
   }
 
   .about-title {
@@ -928,5 +1083,64 @@ a:hover {
 
   .detail-separator {
     width: 100%;
+  }
+
+  .audio-visualizer {
+    height: 150px;
+    opacity: 0.4;
+  }
+
+  .visualizer-bar {
+    width: 2px;
+  }
+
+  .music-pulse {
+    width: 200px;
+    height: 200px;
+  }
+
+  .wave-circle {
+    width: 150px;
+    height: 150px;
+  }
+
+  .carousel-indicators {
+    margin-top: 30px;
+    gap: 8px;
+  }
+
+  .carousel-dot {
+    width: 8px;
+    height: 8px;
+  }
+
+  .carousel-dot.active {
+    width: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 28px;
+  }
+
+  .hero-description {
+    font-size: 13px;
+  }
+
+  .upcoming-events-title {
+    font-size: 24px;
+  }
+
+  .event-name {
+    font-size: 20px;
+  }
+
+  .event-details-card {
+    padding: 20px 15px;
+  }
+
+  .ticket-selection h2 {
+    font-size: 20px;
   }
 }
