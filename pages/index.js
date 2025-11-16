@@ -201,9 +201,6 @@ export default function Home() {
           <div className="events-month">November 2024</div>
           
           <div className="event-card">
-            <div className="event-card-image">
-              <img src="/cover.png" alt="NO SLEEP NOV21" />
-            </div>
             <div className="event-card-details">
               <div className="event-date">21 November, Friday</div>
               <h3 className="event-name">NO SLEEP NOV21</h3>
