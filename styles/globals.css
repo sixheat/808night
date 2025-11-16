@@ -1495,8 +1495,9 @@ a:hover {
   }
 
   .hero-image-bg {
-    background-size: cover;
+    background-size: contain;
     background-position: center center;
+    background-color: #000000;
   }
 
   .upcoming-events-section {
@@ -1879,6 +1880,12 @@ a:hover {
 }
 
 @media (max-width: 480px) {
+  .hero-image-bg {
+    background-size: contain;
+    background-position: center center;
+    background-color: #000000;
+  }
+
   .event-title-modern {
     font-size: 32px;
   }
