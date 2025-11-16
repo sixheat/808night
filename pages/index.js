@@ -284,10 +284,6 @@ export default function Home() {
       {/* Ticket Section - Modern Full-Screen Design */}
       <section id="ticket-section" className="ticket-section-modern">
         <div className="ticket-bg-animation"></div>
-        <div className="countdown-container-fixed">
-          <div className="countdown-label-fixed">Event Starts In</div>
-          <CountdownTimer />
-        </div>
         <div className="ticket-grid-container">
           {/* Left Side - Event Details */}
           <div className="ticket-left-panel">
@@ -380,6 +376,11 @@ export default function Home() {
                   </div>
             </label>
           </div>
+
+              <div className="countdown-container-inline">
+                <div className="countdown-label-inline">Event Starts In</div>
+                <CountdownTimer />
+              </div>
 
               <div className="quantity-selector-modern">
                 <label className="quantity-label">Quantity</label>
