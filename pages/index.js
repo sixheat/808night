@@ -77,7 +77,7 @@ function CountdownTimer() {
 
   useEffect(() => {
     const calculateTimeLeft = () => {
-      const eventDate = new Date('2024-11-21T21:00:00-05:00');
+      const eventDate = new Date('2025-11-21T21:00:00-05:00');
       const now = new Date();
       const difference = eventDate - now;
 
