@@ -202,7 +202,6 @@ export default function Home() {
       <section className="upcoming-events-section">
         <div className="upcoming-events-container">
           <h2 className="upcoming-events-title">OUR UPCOMING EVENTS</h2>
-          <div className="events-month">November 2024</div>
           
           <div className="event-card">
             <div className="event-card-details">
