@@ -194,6 +194,35 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Upcoming Events Section */}
+      <section className="upcoming-events-section">
+        <div className="upcoming-events-container">
+          <h2 className="upcoming-events-title">OUR UPCOMING EVENTS</h2>
+          <div className="events-month">November 2024</div>
+          
+          <div className="event-card">
+            <div className="event-card-image">
+              <img src="/cover.png" alt="NO SLEEP NOV21" />
+            </div>
+            <div className="event-card-details">
+              <div className="event-date">21 November, Friday</div>
+              <h3 className="event-name">NO SLEEP NOV21</h3>
+              <div className="event-performers">Special Guest: CH**KY* (1M+ FOLLOWERS)</div>
+              <div className="event-location">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ marginRight: "6px" }}>
+                  <path d="M8 8C9.10457 8 10 7.10457 10 6C10 4.89543 9.10457 4 8 4C6.89543 4 6 4.89543 6 6C6 7.10457 6.89543 8 8 8Z" fill="currentColor"/>
+                  <path d="M8 8V12M3 12H13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                </svg>
+                NYC — Location drops day of
+              </div>
+            </div>
+            <button className="get-ticket-btn" onClick={scrollToTickets}>
+              Get Your Ticket
+            </button>
+          </div>
+        </div>
+      </section>
+
       {/* Ticket Section */}
       <section id="ticket-section" className="ticket-section">
         <div className="ticket-container">

@@ -238,6 +238,132 @@ a:hover {
   }
 }
 
+/* Upcoming Events Section */
+.upcoming-events-section {
+  background: #0a0a0a;
+  padding: 80px 20px;
+  width: 100%;
+}
+
+.upcoming-events-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.upcoming-events-title {
+  font-size: 48px;
+  font-weight: 700;
+  color: #ffffff;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0 0 40px 0;
+}
+
+.events-month {
+  font-size: 24px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+.event-card {
+  display: flex;
+  align-items: center;
+  background: #1a1a1a;
+  border-radius: 12px;
+  overflow: hidden;
+  gap: 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.event-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+}
+
+.event-card-image {
+  flex-shrink: 0;
+  width: 300px;
+  height: 200px;
+  overflow: hidden;
+}
+
+.event-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.event-card-details {
+  flex: 1;
+  padding: 30px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.event-date {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ff0000;
+  margin-bottom: 4px;
+}
+
+.event-name {
+  font-size: 28px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.event-performers {
+  font-size: 16px;
+  color: #ffffff;
+  opacity: 0.9;
+}
+
+.event-location {
+  font-size: 14px;
+  color: #ffffff;
+  opacity: 0.8;
+  display: flex;
+  align-items: center;
+}
+
+.get-ticket-btn {
+  flex-shrink: 0;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 2px solid #ff0000;
+  background: transparent;
+  color: #ff0000;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+}
+
+.get-ticket-btn:hover {
+  background: #ff0000;
+  color: #ffffff;
+  transform: scale(1.05);
+  box-shadow: 0 4px 20px rgba(255, 0, 0, 0.4);
+}
+
 /* Ticket Section */
 .ticket-section {
   background: #0a0a0a;
@@ -738,6 +864,39 @@ a:hover {
 
   .hero-description {
     font-size: 16px;
+  }
+
+  .upcoming-events-title {
+    font-size: 32px;
+  }
+
+  .events-month {
+    font-size: 20px;
+  }
+
+  .event-card {
+    flex-direction: column;
+  }
+
+  .event-card-image {
+    width: 100%;
+    height: 250px;
+  }
+
+  .event-card-details {
+    padding: 20px;
+  }
+
+  .event-name {
+    font-size: 24px;
+  }
+
+  .get-ticket-btn {
+    width: 100%;
+    height: 60px;
+    border-radius: 8px;
+    margin: 20px;
+    margin-top: 0;
   }
 
   .ticket-options {
