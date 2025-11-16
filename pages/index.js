@@ -223,85 +223,115 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Ticket Section */}
-      <section id="ticket-section" className="ticket-section">
-        <div className="ticket-container">
-          <div className="event-details-card">
-            <div className="event-badges">
-              <span className="event-badge">Friday, Nov 21</span>
-              <span className="event-badge">9:00 PM — LATE</span>
-              <span className="event-badge">STRICT SECURITY</span>
-              <span className="event-badge">NO REFUNDS</span>
-              <span className="event-badge">HIGH SCHOOL ONLY</span>
+      {/* Ticket Section - Modern Full-Screen Design */}
+      <section id="ticket-section" className="ticket-section-modern">
+        <div className="ticket-bg-animation"></div>
+        <div className="ticket-grid-container">
+          {/* Left Side - Event Details */}
+          <div className="ticket-left-panel">
+            <div className="event-header-modern">
+              <h1 className="event-title-modern">NO SLEEP NOV 21</h1>
+              <p className="event-host-modern">HOSTED BY @babyboybenj</p>
+            </div>
+            
+            <div className="event-badges-modern">
+              <span className="event-badge-modern">Friday, Nov 21</span>
+              <span className="event-badge-modern">9:00 PM — LATE</span>
+              <span className="event-badge-modern">STRICT SECURITY</span>
+              <span className="event-badge-modern">NO REFUNDS</span>
+              <span className="event-badge-modern">HIGH SCHOOL ONLY</span>
             </div>
 
-            <div className="event-image-container">
-              <img src="/cover.png" alt="NO SLEEP NOV21 cover" className="event-image"/>
-            </div>
-
-            <div className="special-guest-announcement">
-              <div className="special-guest-title">
+            <div className="special-guest-modern">
+              <div className="special-guest-title-modern">
                 SPECIAL GUEST… CH**KY* (1M+ FOLLOWERS)
               </div>
-              <div className="special-guest-subtitle">
+              <div className="special-guest-subtitle-modern">
                 WHO COULD IT BE?!
               </div>
             </div>
 
-            <div className="event-info">
+            <div className="event-details-modern">
               <p><strong>FRIDAY NIGHT IS CALLING, AND IT'S NOT ASKING NICELY.</strong> NO SLEEP NOV21 IS THE PARTY EVERYONE IS GONNA BE TALKING ABOUT. IF YOU WANT A NIGHT THAT ACTUALLY GOES CRAZY, THIS IS WHERE YOU NEED TO BE.</p>
-              <p><strong>NYC</strong> — Location drops day of<br/>
-              <strong>Friday, November 21</strong> — 9:00 PM until late<br/>
-              <strong>HIGH SCHOOL ONLY</strong></p>
-              <p><strong>Security on-site</strong><br/>
-              <strong>Bag checks at entry</strong></p>
-              <p><strong>NO DRINKING. NO DRUGS. NO VAPES.</strong><br/>
-              <strong>NO REFUNDS UNDER ANY CIRCUMSTANCES</strong></p>
-              <h3>DISCLAIMER</h3>
-              <p className="small">
-                The event staff is not responsible for any injuries, lost items, or bad decisions.
-                By entering, you agree to follow all rules from security and staff. If you break the rules,
-                you're out. No warnings. No refunds.
-              </p>
+              <div className="event-detail-item">
+                <strong>NYC</strong> — Location drops day of
+              </div>
+              <div className="event-detail-item">
+                <strong>Friday, November 21</strong> — 9:00 PM until late
+              </div>
+              <div className="event-detail-item">
+                <strong>HIGH SCHOOL ONLY</strong>
+              </div>
+              <div className="event-detail-item">
+                <strong>Security on-site</strong> · <strong>Bag checks at entry</strong>
+              </div>
+              <div className="event-detail-item">
+                <strong>NO DRINKING. NO DRUGS. NO VAPES.</strong>
+              </div>
             </div>
+          </div>
 
-            <div className="ticket-selection">
-              <h2>Choose Your Ticket</h2>
-              <div className="ticket-options">
-                <label className={`ticket-option ${tier === "ga" ? "selected" : ""}`}>
+          {/* Right Side - Ticket Selection */}
+          <div className="ticket-right-panel">
+            <div className="ticket-selection-modern">
+              <h2 className="ticket-selection-title">Choose Your Ticket</h2>
+              
+              <div className="ticket-options-grid">
+                <label className={`ticket-card-modern ${tier === "ga" ? "selected" : ""}`}>
                   <input 
                     type="radio" 
                     name="tier" 
                     value="ga" 
                     checked={tier === "ga"} 
                     onChange={() => setTier("ga")} 
+                    className="ticket-radio-hidden"
                   />
-                  <div className="ticket-option-content">
-                    <strong>General Admission — $41.41</strong>
-                    <div className="small">Standard entry</div>
+                  <div className="ticket-radio-custom"></div>
+                  <div className="ticket-card-content">
+                    <div className="ticket-card-header">
+                      <strong className="ticket-name">General Admission</strong>
+                      <span className="ticket-price">$41.41</span>
+                    </div>
+                    <div className="ticket-description">Standard entry</div>
                   </div>
                 </label>
-                <label className={`ticket-option vip-option ${tier === "vip" ? "selected" : ""}`}>
+
+                <label className={`ticket-card-modern vip-card-modern ${tier === "vip" ? "selected" : ""}`}>
                   <input 
                     type="radio" 
                     name="tier" 
                     value="vip" 
                     checked={tier === "vip"} 
                     onChange={() => setTier("vip")} 
+                    className="ticket-radio-hidden"
                   />
-                  <div className="ticket-option-content">
-                    <div className="limited-badge">LIMITED</div>
-                    <strong>VIP - Skip The Line — $67.67</strong>
-                    <div className="small">Fast-track entry · Priority access</div>
+                  <div className="ticket-radio-custom"></div>
+                  <div className="ticket-card-content">
+                    <div className="limited-badge-modern">LIMITED</div>
+                    <div className="ticket-card-header">
+                      <strong className="ticket-name">VIP - Skip The Line</strong>
+                      <span className="ticket-price">$67.67</span>
+                    </div>
+                    <div className="ticket-description">Fast-track entry · Priority access</div>
                   </div>
                 </label>
               </div>
 
-              <div className="quantity-selector">
-                <label>
-                  <div className="small">Quantity</div>
+              <div className="quantity-selector-modern">
+                <label className="quantity-label">Quantity</label>
+                <div className="quantity-controls">
+                  <button 
+                    className="quantity-btn"
+                    type="button"
+                    onClick={() => {
+                      if (qty > 1) setQty(qty - 1);
+                    }}
+                    disabled={qty <= 1}
+                  >
+                    −
+                  </button>
                   <input
-                    className="quantity-input"
+                    className="quantity-input-modern"
                     type="number"
                     min="1"
                     max={10}
@@ -315,20 +345,37 @@ export default function Home() {
                       setQty(v);
                     }}
                   />
-                </label>
+                  <button 
+                    className="quantity-btn"
+                    type="button"
+                    onClick={() => {
+                      if (qty < 10) setQty(qty + 1);
+                    }}
+                    disabled={qty >= 10}
+                  >
+                    +
+                  </button>
+                </div>
+                <div className="quantity-limit">Max 10 per order</div>
               </div>
 
-              <button className="checkout-btn" onClick={buy} disabled={loading}>
-                {loading ? "Loading…" : `Checkout • $${(PRICES[tier] * qty).toFixed(2)}`}
+              <button className="checkout-btn-modern" onClick={buy} disabled={loading}>
+                <span className="checkout-text">
+                  {loading ? "Processing..." : "Checkout"}
+                </span>
+                <span className="checkout-price">${(PRICES[tier] * qty).toFixed(2)}</span>
               </button>
 
-              <div className="ticket-links">
-                <a href="/terms">Terms</a> · <a href="/refunds">Refunds</a>
+              <div className="ticket-footer-modern">
+                <div className="ticket-links-modern">
+                  <a href="/terms">Terms</a>
+                  <span className="link-separator">·</span>
+                  <a href="/refunds">Refunds</a>
+                </div>
+                <p className="ticket-disclaimer-modern">
+                  By purchasing, you agree to our Terms. High school only. No alcohol/drugs. Violations = removal without refund.
+                </p>
               </div>
-
-              <p className="ticket-help">
-                By purchasing, you agree to our Terms. High school only. No alcohol/drugs. Violations = removal without refund.
-              </p>
             </div>
           </div>
         </div>
