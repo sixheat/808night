@@ -79,28 +79,19 @@ export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
   try {
     const { tier, qty } = req.body || {};
+    
+    // Early bid is closed - reject early bird requests
+    if (tier === "early") {
+      return res.status(400).json({ error: "Early Bird tickets are no longer available." });
+    }
+    
     const qtyInt = Math.max(1, Math.min(parseInt(qty || 1, 10), 10));
-    const isEarly = tier === "early";
-    const unitAmount = isEarly ? 2950 : 4950; // cents
-    const metadataTier = isEarly ? "early_bird" : "general_admission";
-    const earlyBirdCap = getEarlyBirdCap();
+    const unitAmount = 4141; // cents ($41.41)
+    const metadataTier = "general_admission";
 
-    const maxPerOrder = isEarly ? 4 : 10;
+    const maxPerOrder = 10;
     if (qtyInt > maxPerOrder) {
       return res.status(400).json({ error: `Max ${maxPerOrder} tickets per order for this tier.` });
-    }
-
-    if (isEarly) {
-      const sold = await getTicketsSoldForTier("early_bird");
-      if (sold >= earlyBirdCap) {
-        return res.status(400).json({ error: "Early Bird tickets are sold out." });
-      }
-      if (sold + qtyInt > earlyBirdCap) {
-        const remaining = Math.max(earlyBirdCap - sold, 0);
-        return res
-          .status(400)
-          .json({ error: `Only ${remaining} Early Bird ticket${remaining === 1 ? "" : "s"} left.` });
-      }
     }
 
     const stripe = getStripe();
@@ -113,7 +104,7 @@ export default async function handler(req, res) {
         {
           price_data: {
             currency: "usd",
-            product_data: { name: isEarly ? "NO SLEEP NOV21 — Early Bird" : "NO SLEEP NOV21 — General Admission" },
+            product_data: { name: "NO SLEEP NOV21 — General Admission" },
             unit_amount: unitAmount
           },
           quantity: qtyInt

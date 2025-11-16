@@ -71,10 +71,10 @@ function StatusIndicator() {
 
 export default function Home() {
   const [loading, setLoading] = useState(false);
-  const [tier, setTier] = useState("early"); // "early" | "ga"
+  const [tier, setTier] = useState("ga"); // "ga" only (early bid closed)
   const [qty, setQty] = useState(1);
 
-  const PRICES = { early: 29.5, ga: 49.5 };
+  const PRICES = { ga: 41.41 };
   const total = (PRICES[tier] * qty).toFixed(2);
 
   async function buy() {
@@ -174,13 +174,8 @@ export default function Home() {
           <h2 style={{textAlign:"center"}}>Choose Your Ticket</h2>
           <div className="row" style={{marginTop:12}}>
             <label className="card" style={{cursor:"pointer", textAlign:"left", maxWidth:340}}>
-              <input type="radio" name="tier" value="early" checked={tier === "early"} onChange={() => setTier("early")} />{" "}
-              <strong>Early Bird — $29.50</strong>
-              <div className="small">50 available total · limit 4 per order</div>
-            </label>
-            <label className="card" style={{cursor:"pointer", textAlign:"left", maxWidth:340}}>
               <input type="radio" name="tier" value="ga" checked={tier === "ga"} onChange={() => setTier("ga")} />{" "}
-              <strong>General Admission — $49.50</strong>
+              <strong>General Admission — $41.41</strong>
               <div className="small">Standard entry</div>
             </label>
           </div>
@@ -192,12 +187,12 @@ export default function Home() {
                 className="input"
                 type="number"
                 min="1"
-                max={tier === "early" ? 4 : 10}
+                max={10}
                 step="1"
                 value={qty}
                 onChange={(e) => {
                   const v = parseInt(e.target.value || 1,10);
-                  const max = tier === "early" ? 4 : 10;
+                  const max = 10;
                   if (v > max) return setQty(max);
                   if (v < 1) return setQty(1);
                   setQty(v);
