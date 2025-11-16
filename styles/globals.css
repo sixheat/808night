@@ -1383,10 +1383,17 @@ a:hover {
 /* Responsive Design */
 /* Mobile Performance Optimization */
 @media (max-width: 768px) {
-  * {
-    animation-duration: 0.01ms !important;
-    animation-delay: 0.01ms !important;
-    transition-duration: 0.1s !important;
+  .ticket-bg-animation {
+    animation: none !important;
+  }
+  
+  .ticket-left-panel,
+  .ticket-right-panel {
+    animation: none !important;
+  }
+  
+  .checkout-btn-modern::before {
+    display: none;
   }
 
   .hero-section {
