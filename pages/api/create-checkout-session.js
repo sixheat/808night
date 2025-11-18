@@ -105,24 +105,27 @@ export default async function handler(req, res) {
         {
           price_data: {
             currency: "usd",
-            product_data: { name: isVip ? "NO SLEEP NOV21 — VIP - Skip The Line" : "NO SLEEP NOV21 — General Admission" },
+            product_data: { name: isVip ? "NO SLEEP DEC6 — VIP - Skip The Line" : "NO SLEEP DEC6 — General Admission" },
             unit_amount: unitAmount
           },
           quantity: qtyInt
         }
       ],
+      billing_address_collection: "required",
       success_url: `${baseUrl}/success`,
       cancel_url: `${baseUrl}/cancel`,
-      billing_address_collection: "auto",
       allow_promotion_codes: true,
       consent_collection: { terms_of_service: "none" },
       custom_text: { submit: { message: "No refunds. High school only. Security enforced." } },
       metadata: {
-        event: "NO SLEEP NOV21",
+        event: "NO SLEEP DEC6",
+        eventName: "NO SLEEP DEC6",
+        eventLocation: "Location drops day of",
         tier: metadataTier,
+        ticketType: isVip ? "VIP - Skip The Line" : "General Admission",
         qty: String(qtyInt),
         city: "New York",
-        start: "2025-11-21T21:00:00-05:00"
+        start: "2025-12-06T21:00:00-05:00"
       }
     });
 
