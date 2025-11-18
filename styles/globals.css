@@ -70,6 +70,7 @@ a:hover {
     padding: 0;
     min-height: 100vh;
     height: 100vh;
+    overflow: hidden;
   }
   
   .hero-background {
@@ -82,7 +83,7 @@ a:hover {
   }
   
   .hero-image-bg {
-    background-size: cover;
+    background-size: contain;
     background-position: center top;
     background-repeat: no-repeat;
     top: 0;
@@ -91,6 +92,7 @@ a:hover {
     bottom: 0;
     height: 100vh;
     min-height: 100vh;
+    width: 100%;
   }
 }
 
@@ -1523,18 +1525,26 @@ a:hover {
   }
 
   .hero-image-bg {
-    background-size: cover;
+    background-size: contain;
     background-position: center top;
     min-height: 100vh;
     height: 100vh;
     width: 100%;
     background-repeat: no-repeat;
     top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
   }
   
   .hero-background {
     height: 100vh;
     top: 0;
+    background-color: #0a0a0a;
+  }
+  
+  .hero-section {
+    overflow: hidden;
   }
 
   .upcoming-events-section {
@@ -1918,13 +1928,16 @@ a:hover {
 
 @media (max-width: 480px) {
   .hero-image-bg {
-    background-size: cover;
+    background-size: contain;
     background-position: center top;
     min-height: 100vh;
     height: 100vh;
     width: 100%;
     background-repeat: no-repeat;
     top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
   }
   
   .hero-section {
@@ -1932,11 +1945,13 @@ a:hover {
     min-height: 100vh;
     padding: 0;
     margin: 0;
+    overflow: hidden;
   }
   
   .hero-background {
     height: 100vh;
     top: 0;
+    background-color: #0a0a0a;
   }
 
   .event-title-modern {
