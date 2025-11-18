@@ -63,6 +63,20 @@ a:hover {
   min-height: 100vh;
 }
 
+/* Mobile: Show full image without cropping */
+@media (max-width: 768px) {
+  .hero-image-bg {
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+  
+  /* Ensure the background fills the viewport without empty spaces */
+  .hero-background {
+    background-color: #0a0a0a;
+  }
+}
+
 .hero-overlay {
   position: absolute;
   top: 0;
@@ -1490,11 +1504,12 @@ a:hover {
   }
 
   .hero-image-bg {
-    background-size: cover;
+    background-size: contain;
     background-position: center center;
     min-height: 100vh;
     width: 100%;
     height: 100%;
+    background-repeat: no-repeat;
   }
 
   .upcoming-events-section {
@@ -1878,10 +1893,12 @@ a:hover {
 
 @media (max-width: 480px) {
   .hero-image-bg {
-    background-size: cover;
+    background-size: contain;
     background-position: center center;
     min-height: 100vh;
     width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
   }
 
   .event-title-modern {
