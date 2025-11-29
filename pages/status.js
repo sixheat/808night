@@ -5,6 +5,8 @@ export default function StatusPage() {
   const [currentStatus, setCurrentStatus] = useState(null);
   const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [activeTab, setActiveTab] = useState("Dashboard");
+  const [viewMode, setViewMode] = useState("Live");
 
   useEffect(() => {
     const checkStatus = async () => {
@@ -43,6 +45,8 @@ export default function StatusPage() {
 
   const overallStatus = currentStatus?.status || "checking";
   const uptime = calculateUptime();
+  const checkCount = history.length;
+  const serviceCount = currentStatus?.checks ? Object.keys(currentStatus.checks).length : 0;
 
   return (
     <>
@@ -58,10 +62,15 @@ export default function StatusPage() {
           <div className="crextio-header">
             <div className="crextio-brand">808night Status</div>
             <div className="crextio-nav">
-              <div className="crextio-nav-item active">Dashboard</div>
-              <div className="crextio-nav-item">Incidents</div>
-              <div className="crextio-nav-item">Maintenance</div>
-              <div className="crextio-nav-item">Subscribe</div>
+              {["Dashboard", "Incidents", "Maintenance", "Subscribe"].map((tab) => (
+                <div
+                  key={tab}
+                  className={`crextio-nav-item ${activeTab === tab ? "active" : ""}`}
+                  onClick={() => setActiveTab(tab)}
+                >
+                  {tab}
+                </div>
+              ))}
             </div>
             <div style={{ display: 'flex', gap: '16px' }}>
               <a href="/" style={{ textDecoration: 'none', color: '#111' }}>Back to Site</a>
@@ -73,27 +82,37 @@ export default function StatusPage() {
             <div className="crextio-title-section">
               <h1 className="crextio-title">Welcome in, 808night</h1>
               <div style={{ display: 'flex', gap: '12px' }}>
-                <div style={{ background: '#1A1A1A', color: '#fff', padding: '8px 24px', borderRadius: '99px', fontSize: '14px' }}>Overview</div>
-                <div style={{ background: '#F5D485', color: '#111', padding: '8px 24px', borderRadius: '99px', fontSize: '14px' }}>Live</div>
+                <div
+                  className={`toggle-btn ${viewMode === "Overview" ? "active" : "inactive"}`}
+                  onClick={() => setViewMode("Overview")}
+                >
+                  Overview
+                </div>
+                <div
+                  className={`toggle-btn ${viewMode === "Live" ? "active" : "inactive"}`}
+                  onClick={() => setViewMode("Live")}
+                >
+                  Live
+                </div>
               </div>
             </div>
 
             <div className="crextio-stats-row">
               <div className="crextio-stat-item">
                 <div>
-                  <div className="stat-value-large">{uptime}</div>
-                  <div className="stat-label-small">Uptime %</div>
+                  <div className="stat-value-large">{uptime}%</div>
+                  <div className="stat-label-small">Uptime</div>
                 </div>
               </div>
               <div className="crextio-stat-item">
                 <div>
-                  <div className="stat-value-large">{history.length}</div>
+                  <div className="stat-value-large">{checkCount}</div>
                   <div className="stat-label-small">Checks</div>
                 </div>
               </div>
               <div className="crextio-stat-item">
                 <div>
-                  <div className="stat-value-large">24</div>
+                  <div className="stat-value-large">{serviceCount}</div>
                   <div className="stat-label-small">Services</div>
                 </div>
               </div>
@@ -107,7 +126,9 @@ export default function StatusPage() {
             <div className="crex-card card-profile">
               <div className="profile-image-area"></div>
               <div className="profile-info">
-                <div className="status-badge-large">
+                <div className="status-badge-large" style={{
+                  background: overallStatus === 'operational' ? 'rgba(34, 197, 94, 0.8)' : 'rgba(239, 68, 68, 0.8)'
+                }}>
                   {overallStatus === 'operational' ? 'System Operational' : 'Issues Detected'}
                 </div>
                 <div style={{ fontSize: '24px', fontWeight: '600', color: '#fff' }}>
@@ -130,12 +151,20 @@ export default function StatusPage() {
               </div>
 
               <div className="chart-bars">
-                {[...Array(12)].map((_, i) => (
+                {history.slice(-12).map((entry, i) => (
                   <div
                     key={i}
-                    className={`chart-bar ${i % 3 === 0 ? 'accent' : ''}`}
-                    style={{ height: `${Math.random() * 60 + 20}%` }}
+                    className={`chart-bar ${entry.status === 'operational' ? 'accent' : ''}`}
+                    style={{
+                      height: `${entry.status === 'operational' ? 60 + Math.random() * 20 : 20}%`,
+                      background: entry.status === 'operational' ? 'var(--crex-accent)' : '#ef4444'
+                    }}
+                    title={new Date(entry.timestamp).toLocaleTimeString()}
                   ></div>
+                ))}
+                {/* Fill empty slots if history is short */}
+                {[...Array(Math.max(0, 12 - history.length))].map((_, i) => (
+                  <div key={`empty-${i}`} className="chart-bar" style={{ height: '5%', opacity: 0.2 }}></div>
                 ))}
               </div>
             </div>
@@ -161,8 +190,12 @@ export default function StatusPage() {
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                   <div style={{ width: '40px', height: '40px', background: '#F2F2F2', borderRadius: '8px' }}></div>
                   <div>
-                    <div style={{ fontSize: '14px', fontWeight: '600' }}>No Incidents</div>
-                    <div style={{ fontSize: '12px', color: '#888' }}>All systems normal</div>
+                    <div style={{ fontSize: '14px', fontWeight: '600' }}>
+                      {overallStatus === 'operational' ? 'No Incidents' : 'Active Incident'}
+                    </div>
+                    <div style={{ fontSize: '12px', color: '#888' }}>
+                      {overallStatus === 'operational' ? 'All systems normal' : currentStatus?.message}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -172,13 +205,17 @@ export default function StatusPage() {
             <div className="crex-card card-bottom-2">
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '24px' }}>
                 <div style={{ fontSize: '18px', fontWeight: '500' }}>Timeline</div>
-                <div style={{ fontSize: '14px', color: '#888' }}>September 2025</div>
+                <div style={{ fontSize: '14px', color: '#888' }}>Live Feed</div>
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', textAlign: 'center' }}>
-                {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (
-                  <div key={day}>
-                    <div style={{ fontSize: '12px', color: '#888', marginBottom: '8px' }}>{day}</div>
-                    <div style={{ fontSize: '14px', fontWeight: '600' }}>22</div>
+                {history.slice(-6).map((entry, i) => (
+                  <div key={i}>
+                    <div style={{ fontSize: '12px', color: '#888', marginBottom: '8px' }}>
+                      {new Date(entry.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                    </div>
+                    <div style={{ fontSize: '14px', fontWeight: '600', color: entry.status === 'operational' ? '#22c55e' : '#ef4444' }}>
+                      {entry.status === 'operational' ? 'OK' : 'ERR'}
+                    </div>
                   </div>
                 ))}
               </div>
@@ -188,34 +225,30 @@ export default function StatusPage() {
             <div className="crex-card card-dark">
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <div style={{ fontSize: '18px', fontWeight: '500' }}>Service Health</div>
-                <div style={{ fontSize: '24px' }}>2/8</div>
+                <div style={{ fontSize: '24px' }}>{serviceCount}/3</div>
               </div>
 
               <div className="dark-list">
                 {currentStatus?.checks && Object.entries(currentStatus.checks).map(([service, check]) => (
                   <div key={service} className="dark-item">
                     <div className="dark-icon">
-                      {service === 'api' ? '⚡️' : service === 'database' ? '💾' : '🌐'}
+                      {service === 'stripe' ? '💳' : service === 'environment' ? '⚙️' : '⚡️'}
                     </div>
                     <div>
                       <div style={{ fontSize: '14px', fontWeight: '500', textTransform: 'capitalize' }}>{service}</div>
                       <div style={{ fontSize: '12px', color: 'rgba(255,255,255,0.5)' }}>{check.message}</div>
                     </div>
-                    <div className="dark-check">
+                    <div className="dark-check" style={{ color: check.status === 'ok' ? 'var(--crex-accent)' : '#ef4444' }}>
                       {check.status === 'ok' ? '✔' : '⚠'}
                     </div>
                   </div>
                 ))}
 
-                {/* Placeholder items to fill space if needed */}
-                <div className="dark-item">
-                  <div className="dark-icon">🔒</div>
-                  <div>
-                    <div style={{ fontSize: '14px', fontWeight: '500' }}>Security</div>
-                    <div style={{ fontSize: '12px', color: 'rgba(255,255,255,0.5)' }}>Audited</div>
+                {loading && (
+                  <div className="dark-item">
+                    <div style={{ fontSize: '14px', color: 'rgba(255,255,255,0.5)' }}>Loading services...</div>
                   </div>
-                  <div className="dark-check">✔</div>
-                </div>
+                )}
               </div>
             </div>
 
