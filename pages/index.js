@@ -51,9 +51,9 @@ function StatusIndicator() {
   return (
     <a href="/status" className="status-link">
       <div className="status-indicator" style={{ borderColor: status.color }}>
-        <span 
-          className="status-dot" 
-          style={{ 
+        <span
+          className="status-dot"
+          style={{
             background: status.color,
             boxShadow: `0 0 8px ${status.color}40`
           }}
@@ -124,38 +124,14 @@ function CountdownTimer() {
   );
 }
 
-// Enhanced Audio Visualizer Component
+// Enhanced Audio Visualizer Component - CSS Animation Version
 function AudioVisualizer() {
-  const [bars, setBars] = useState([]);
-  const [pulse, setPulse] = useState(0);
-
-  useEffect(() => {
-    const barCount = 30;
-    const newBars = Array.from({ length: barCount }, () => ({
-      height: Math.random() * 70 + 30,
-      delay: Math.random() * 0.8,
-      speed: Math.random() * 0.5 + 0.5,
-    }));
-    setBars(newBars);
-
-    // Update bars periodically for dynamic effect
-    const interval = setInterval(() => {
-      setBars(prevBars => prevBars.map(bar => ({
-        ...bar,
-        height: Math.random() * 70 + 30,
-      })));
-    }, 200);
-
-    // Pulse effect
-    const pulseInterval = setInterval(() => {
-      setPulse(prev => (prev + 1) % 3);
-    }, 500);
-
-    return () => {
-      clearInterval(interval);
-      clearInterval(pulseInterval);
-    };
-  }, []);
+  // Generate static bars to avoid re-renders
+  const [bars] = useState(() => Array.from({ length: 30 }, (_, i) => ({
+    height: Math.random() * 70 + 30,
+    delay: Math.random() * 2, // Increased delay range for variety
+    duration: Math.random() * 1 + 1, // Slower, smoother animation
+  })));
 
   return (
     <>
@@ -166,13 +142,13 @@ function AudioVisualizer() {
             className="visualizer-bar"
             style={{
               height: `${bar.height}%`,
-              animationDelay: `${bar.delay}s`,
-              animationDuration: `${bar.speed}s`,
+              animationDelay: `-${bar.delay}s`,
+              animationDuration: `${bar.duration}s`,
             }}
           />
         ))}
       </div>
-      <div className="music-pulse" style={{ animationDelay: `${pulse * 0.2}s` }}></div>
+      <div className="music-pulse"></div>
       <div className="music-waves">
         {[...Array(5)].map((_, i) => (
           <div key={i} className="wave-circle" style={{ animationDelay: `${i * 0.3}s` }}></div>
@@ -216,34 +192,34 @@ export default function Home() {
       e.preventDefault();
       e.stopPropagation();
     }
-    
+
     setShowTicketSection(true);
-    
+
     // Multiple attempts to ensure scroll works
     const scrollToSection = (attempts = 0) => {
       const ticketSection = document.getElementById("ticket-section");
-      
+
       if (ticketSection) {
         // Try to find the "Choose Your Ticket" heading for more precise scrolling
         const ticketTitle = ticketSection.querySelector('.ticket-selection-title');
         const targetElement = ticketTitle || ticketSection;
-        
+
         // Get the position
         const rect = targetElement.getBoundingClientRect();
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         const targetPosition = rect.top + scrollTop - 80; // 80px offset for mobile header
-        
+
         // Scroll to the position
         window.scrollTo({
           top: targetPosition,
           behavior: "smooth"
         });
-        
+
         // Verify scroll worked, retry if needed
         setTimeout(() => {
           const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
           const distance = Math.abs(currentScroll - targetPosition);
-          
+
           // If we're more than 100px away, try again
           if (distance > 100 && attempts < 3) {
             scrollToSection(attempts + 1);
@@ -254,7 +230,7 @@ export default function Home() {
         setTimeout(() => scrollToSection(attempts + 1), 100);
       }
     };
-    
+
     // Start scrolling after a short delay to ensure DOM is ready
     setTimeout(() => {
       scrollToSection(0);
@@ -265,9 +241,10 @@ export default function Home() {
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+        <link rel="preload" as="image" href="/cover.jpg" />
       </Head>
       <Script src="https://js.stripe.com/v3/" strategy="afterInteractive" />
-      
+
       {/* Hero Section */}
       <section className="hero-section">
         <div className="hero-background">
@@ -300,7 +277,7 @@ export default function Home() {
       <section className="upcoming-events-section">
         <div className="upcoming-events-container">
           <h2 className="upcoming-events-title">OUR UPCOMING EVENTS</h2>
-          
+
           <div className="event-card">
             <div className="event-card-details">
               <div className="event-date">5 December, Friday</div>
@@ -308,8 +285,8 @@ export default function Home() {
               <div className="event-performers">Special Guest: CH**KY* (1M+ FOLLOWERS)</div>
               <div className="event-location">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ marginRight: "6px" }}>
-                  <path d="M8 8C9.10457 8 10 7.10457 10 6C10 4.89543 9.10457 4 8 4C6.89543 4 6 4.89543 6 6C6 7.10457 6.89543 8 8 8Z" fill="currentColor"/>
-                  <path d="M8 8V12M3 12H13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                  <path d="M8 8C9.10457 8 10 7.10457 10 6C10 4.89543 9.10457 4 8 4C6.89543 4 6 4.89543 6 6C6 7.10457 6.89543 8 8 8Z" fill="currentColor" />
+                  <path d="M8 8V12M3 12H13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
                 </svg>
                 NYC — Location drops day of
               </div>
@@ -331,14 +308,14 @@ export default function Home() {
               <h1 className="event-title-modern">NO SLEEP DEC 5</h1>
               <p className="event-host-modern">HOSTED BY @babyboybenj</p>
             </div>
-            
+
             <div className="event-badges-modern">
               <span className="event-badge-modern">Friday, Dec 5</span>
               <span className="event-badge-modern">9:00 PM — LATE</span>
               <span className="event-badge-modern">STRICT SECURITY</span>
               <span className="event-badge-modern">NO REFUNDS</span>
               <span className="event-badge-modern">HIGH SCHOOL ONLY</span>
-          </div>
+            </div>
 
             <div className="special-guest-modern">
               <div className="special-guest-title-modern">
@@ -347,7 +324,7 @@ export default function Home() {
               <div className="special-guest-subtitle-modern">
                 WHO COULD IT BE?!
               </div>
-          </div>
+            </div>
 
             <div className="event-details-modern">
               <p><strong>FRIDAY NIGHT IS CALLING, AND IT'S NOT ASKING NICELY.</strong> NO SLEEP DEC5 IS THE PARTY EVERYONE IS GONNA BE TALKING ABOUT. IF YOU WANT A NIGHT THAT ACTUALLY GOES CRAZY, THIS IS WHERE YOU NEED TO BE.</p>
@@ -373,15 +350,15 @@ export default function Home() {
           <div className="ticket-right-panel">
             <div className="ticket-selection-modern">
               <h2 className="ticket-selection-title">Choose Your Ticket</h2>
-              
+
               <div className="ticket-options-grid">
                 <label className={`ticket-card-modern ${tier === "ga" ? "selected" : ""}`}>
-                  <input 
-                    type="radio" 
-                    name="tier" 
-                    value="ga" 
-                    checked={tier === "ga"} 
-                    onChange={() => setTier("ga")} 
+                  <input
+                    type="radio"
+                    name="tier"
+                    value="ga"
+                    checked={tier === "ga"}
+                    onChange={() => setTier("ga")}
                     className="ticket-radio-hidden"
                   />
                   <div className="ticket-radio-custom"></div>
@@ -392,15 +369,15 @@ export default function Home() {
                     </div>
                     <div className="ticket-description">Standard entry</div>
                   </div>
-            </label>
+                </label>
 
                 <label className={`ticket-card-modern vip-card-modern ${tier === "vip" ? "selected" : ""}`}>
-                  <input 
-                    type="radio" 
-                    name="tier" 
-                    value="vip" 
-                    checked={tier === "vip"} 
-                    onChange={() => setTier("vip")} 
+                  <input
+                    type="radio"
+                    name="tier"
+                    value="vip"
+                    checked={tier === "vip"}
+                    onChange={() => setTier("vip")}
                     className="ticket-radio-hidden"
                   />
                   <div className="ticket-radio-custom"></div>
@@ -414,8 +391,8 @@ export default function Home() {
                     </div>
                     <div className="ticket-description">Fast-track entry · Priority access</div>
                   </div>
-            </label>
-          </div>
+                </label>
+              </div>
 
               <div className="countdown-container-inline">
                 <div className="countdown-label-inline">Event Starts In</div>
@@ -425,7 +402,7 @@ export default function Home() {
               <div className="quantity-selector-modern">
                 <label className="quantity-label">Quantity</label>
                 <div className="quantity-controls">
-                  <button 
+                  <button
                     className="quantity-btn"
                     type="button"
                     onClick={() => {
@@ -435,22 +412,22 @@ export default function Home() {
                   >
                     −
                   </button>
-              <input
+                  <input
                     className="quantity-input-modern"
-                type="number"
-                min="1"
+                    type="number"
+                    min="1"
                     max={10}
-                step="1"
-                value={qty}
-                onChange={(e) => {
+                    step="1"
+                    value={qty}
+                    onChange={(e) => {
                       const v = parseInt(e.target.value || 1, 10);
                       const max = 10;
-                  if (v > max) return setQty(max);
-                  if (v < 1) return setQty(1);
-                  setQty(v);
-                }}
-              />
-                  <button 
+                      if (v > max) return setQty(max);
+                      if (v < 1) return setQty(1);
+                      setQty(v);
+                    }}
+                  />
+                  <button
                     className="quantity-btn"
                     type="button"
                     onClick={() => {
@@ -462,14 +439,14 @@ export default function Home() {
                   </button>
                 </div>
                 <div className="quantity-limit">Max 10 per order</div>
-          </div>
+              </div>
 
               <button className="checkout-btn-modern" onClick={buy} disabled={loading}>
                 <span className="checkout-text">
                   {loading ? "Processing..." : "Checkout"}
                 </span>
                 <span className="checkout-price">${(PRICES[tier] * qty).toFixed(2)}</span>
-          </button>
+              </button>
 
               <div className="ticket-footer-modern">
                 <div className="ticket-links-modern">
@@ -492,7 +469,7 @@ export default function Home() {
         </div>
         <div>&copy; {new Date().getFullYear()} NO SLEEP DEC5</div>
       </footer>
-      
+
       <StatusIndicator />
     </>
   );
