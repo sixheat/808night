@@ -1,22 +1,25 @@
-html, body { 
-  margin: 0; 
-  padding: 0; 
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; 
-  background: #0a0a0a; 
-  color: #eee; 
-  overflow-x: hidden; 
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: #0a0a0a;
+  color: #eee;
+  overflow-x: hidden;
   scroll-behavior: smooth;
   width: 100%;
   max-width: 100vw;
   box-sizing: border-box;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
-a { 
-  color: #ff4d4d; 
+a {
+  color: #ff4d4d;
   text-decoration: none;
   transition: color 0.2s ease;
 }
@@ -72,7 +75,7 @@ a:hover {
     height: 100vh;
     overflow: hidden;
   }
-  
+
   .hero-background {
     background-color: #0a0a0a;
     top: 0;
@@ -81,7 +84,7 @@ a:hover {
     bottom: 0;
     height: 100vh;
   }
-  
+
   .hero-image-bg {
     background-size: contain;
     background-position: center top;
@@ -217,10 +220,13 @@ a:hover {
 }
 
 @keyframes visualizer {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scaleY(0.3);
     opacity: 0.6;
   }
+
   50% {
     transform: scaleY(1);
     opacity: 1;
@@ -246,6 +252,7 @@ a:hover {
     transform: translate(-50%, -50%) scale(0.8);
     opacity: 1;
   }
+
   100% {
     transform: translate(-50%, -50%) scale(1.5);
     opacity: 0;
@@ -278,6 +285,7 @@ a:hover {
     transform: translate(-50%, -50%) scale(0.5);
     opacity: 0.8;
   }
+
   100% {
     transform: translate(-50%, -50%) scale(2);
     opacity: 0;
@@ -428,7 +436,7 @@ a:hover {
   left: 0;
   right: 0;
   bottom: 0;
-  background: 
+  background:
     radial-gradient(circle at 20% 30%, rgba(255, 0, 0, 0.1) 0%, transparent 50%),
     radial-gradient(circle at 80% 70%, rgba(139, 0, 0, 0.1) 0%, transparent 50%),
     radial-gradient(circle at 50% 50%, rgba(220, 20, 60, 0.08) 0%, transparent 50%);
@@ -438,8 +446,15 @@ a:hover {
 }
 
 @keyframes bgPulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.8; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
 }
 
 .ticket-grid-container {
@@ -468,6 +483,7 @@ a:hover {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -582,6 +598,7 @@ a:hover {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -1306,18 +1323,45 @@ a:hover {
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.7; transform: scale(1.1); }
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
 }
 
 @keyframes pulse-warning {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(1.2); }
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.5;
+    transform: scale(1.2);
+  }
 }
 
 @keyframes pulse-error {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.4; transform: scale(1.3); }
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.4;
+    transform: scale(1.3);
+  }
 }
 
 .status-text {
@@ -1383,10 +1427,13 @@ a:hover {
 }
 
 @keyframes equalizer-pulse {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scaleY(0.5);
     opacity: 0.6;
   }
+
   50% {
     transform: scaleY(1);
     opacity: 1;
@@ -1426,9 +1473,9 @@ a:hover {
   width: 100%;
   height: 400px;
   background: linear-gradient(135deg, #1a0000 0%, #0a0000 100%);
-  background-image: 
+  background-image:
     radial-gradient(circle at 50% 100%, rgba(255, 0, 0, 0.2) 0%, transparent 70%),
-    url('/cover.png');
+    url('/cover.jpg');
   background-size: cover;
   background-position: center bottom;
   background-repeat: no-repeat;
@@ -1485,12 +1532,12 @@ a:hover {
   .ticket-bg-animation {
     animation: none !important;
   }
-  
+
   .ticket-left-panel,
   .ticket-right-panel {
     animation: none !important;
   }
-  
+
   .checkout-btn-modern::before {
     display: none;
   }
@@ -1536,13 +1583,13 @@ a:hover {
     right: 0;
     bottom: 0;
   }
-  
+
   .hero-background {
     height: 100vh;
     top: 0;
     background-color: #0a0a0a;
   }
-  
+
   .hero-section {
     overflow: hidden;
   }
@@ -1939,7 +1986,7 @@ a:hover {
     right: 0;
     bottom: 0;
   }
-  
+
   .hero-section {
     height: 100vh;
     min-height: 100vh;
@@ -1947,7 +1994,7 @@ a:hover {
     margin: 0;
     overflow: hidden;
   }
-  
+
   .hero-background {
     height: 100vh;
     top: 0;
@@ -2022,6 +2069,7 @@ a:hover {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -2034,6 +2082,7 @@ a:hover {
     opacity: 0;
     transform: translateX(-50px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -2046,6 +2095,7 @@ a:hover {
     opacity: 0;
     transform: translateX(50px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -2058,6 +2108,7 @@ a:hover {
     opacity: 0;
     transform: scale(0.8);
   }
+
   to {
     opacity: 1;
     transform: scale(1);
@@ -2066,9 +2117,12 @@ a:hover {
 
 /* Glow Pulse Animation */
 @keyframes glowPulse {
-  0%, 100% {
+
+  0%,
+  100% {
     box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
   }
+
   50% {
     box-shadow: 0 0 40px rgba(255, 0, 0, 0.8), 0 0 60px rgba(255, 0, 0, 0.4);
   }
@@ -2076,9 +2130,12 @@ a:hover {
 
 /* Red Glow Animation */
 @keyframes redGlow {
-  0%, 100% {
+
+  0%,
+  100% {
     text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
   }
+
   50% {
     text-shadow: 0 0 20px rgba(255, 0, 0, 0.8), 0 0 30px rgba(255, 0, 0, 0.5);
   }
@@ -2089,6 +2146,7 @@ a:hover {
   0% {
     background-position: -1000px 0;
   }
+
   100% {
     background-position: 1000px 0;
   }
@@ -2096,9 +2154,12 @@ a:hover {
 
 /* Float Animation */
 @keyframes float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px);
   }
+
   50% {
     transform: translateY(-10px);
   }
@@ -2110,6 +2171,7 @@ a:hover {
     transform: rotate(0deg);
     filter: hue-rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
     filter: hue-rotate(360deg);
@@ -2122,13 +2184,16 @@ a:hover {
     opacity: 0;
     transform: scale(0.3);
   }
+
   50% {
     opacity: 1;
     transform: scale(1.05);
   }
+
   70% {
     transform: scale(0.9);
   }
+
   100% {
     transform: scale(1);
   }
@@ -2258,11 +2323,25 @@ a:hover {
   transition: all 0.3s ease;
 }
 
-.event-badge-modern:nth-child(1) { animation-delay: 0.1s; }
-.event-badge-modern:nth-child(2) { animation-delay: 0.2s; }
-.event-badge-modern:nth-child(3) { animation-delay: 0.3s; }
-.event-badge-modern:nth-child(4) { animation-delay: 0.4s; }
-.event-badge-modern:nth-child(5) { animation-delay: 0.5s; }
+.event-badge-modern:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.event-badge-modern:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.event-badge-modern:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.event-badge-modern:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.event-badge-modern:nth-child(5) {
+  animation-delay: 0.5s;
+}
 
 .event-badge-modern:hover {
   transform: translateY(-3px) scale(1.05);
@@ -2297,8 +2376,13 @@ a:hover {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.ticket-card-modern:nth-child(1) { animation-delay: 0.1s; }
-.ticket-card-modern:nth-child(2) { animation-delay: 0.3s; }
+.ticket-card-modern:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.ticket-card-modern:nth-child(2) {
+  animation-delay: 0.3s;
+}
 
 .ticket-card-modern::after {
   content: '';
@@ -2491,6 +2575,7 @@ a:hover {
     opacity: 0;
     transform: translateY(50px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -2503,7 +2588,7 @@ a:hover {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-image: 
+  background-image:
     radial-gradient(2px 2px at 20% 30%, rgba(255, 0, 0, 0.3), transparent),
     radial-gradient(2px 2px at 60% 70%, rgba(255, 0, 0, 0.2), transparent),
     radial-gradient(1px 1px at 50% 50%, rgba(255, 0, 0, 0.4), transparent);
@@ -2514,24 +2599,25 @@ a:hover {
 
 /* Mobile Optimizations for Animations */
 @media (max-width: 768px) {
+
   .hero-title,
   .event-title-modern {
     animation: fadeIn 0.8s ease-out, redGlow 3s ease-in-out infinite;
   }
-  
+
   .ticket-card-modern:hover {
     transform: translateY(-5px);
   }
-  
+
   .get-ticket-btn:hover {
     transform: scale(1.02);
   }
-  
+
   /* Reduce animation complexity on mobile */
   .special-guest-modern::before {
     animation: none;
   }
-  
+
   .ticket-bg-animation::before {
     animation: none;
   }
