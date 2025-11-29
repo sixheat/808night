@@ -50,3 +50,5 @@ npm i -g vercel
 vercel
 ```
 Add the same environment variables in Vercel Project Settings and redeploy.
+
+<!-- Test commit for git access verification -->
