@@ -276,7 +276,7 @@ export default function Home() {
           <AudioVisualizer />
         </div>
         <div className="hero-content">
-          <h1 className="hero-title">NO SLEEP DEC6</h1>
+          <h1 className="hero-title">NO SLEEP DEC5</h1>
           <p className="hero-description">
             Don't miss the party everyone's talking about! Secure your tickets today for an unforgettable night of music, energy, and non-stop fun!
           </p>
@@ -303,8 +303,8 @@ export default function Home() {
           
           <div className="event-card">
             <div className="event-card-details">
-              <div className="event-date">6 December, Saturday</div>
-              <h3 className="event-name">NO SLEEP DEC6</h3>
+              <div className="event-date">5 December, Friday</div>
+              <h3 className="event-name">NO SLEEP DEC5</h3>
               <div className="event-performers">Special Guest: CH**KY* (1M+ FOLLOWERS)</div>
               <div className="event-location">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ marginRight: "6px" }}>
@@ -328,12 +328,12 @@ export default function Home() {
           {/* Left Side - Event Details */}
           <div className="ticket-left-panel">
             <div className="event-header-modern">
-              <h1 className="event-title-modern">NO SLEEP DEC 6</h1>
+              <h1 className="event-title-modern">NO SLEEP DEC 5</h1>
               <p className="event-host-modern">HOSTED BY @babyboybenj</p>
             </div>
             
             <div className="event-badges-modern">
-              <span className="event-badge-modern">Saturday, Dec 6</span>
+              <span className="event-badge-modern">Friday, Dec 5</span>
               <span className="event-badge-modern">9:00 PM — LATE</span>
               <span className="event-badge-modern">STRICT SECURITY</span>
               <span className="event-badge-modern">NO REFUNDS</span>
@@ -350,12 +350,12 @@ export default function Home() {
           </div>
 
             <div className="event-details-modern">
-              <p><strong>SATURDAY NIGHT IS CALLING, AND IT'S NOT ASKING NICELY.</strong> NO SLEEP DEC6 IS THE PARTY EVERYONE IS GONNA BE TALKING ABOUT. IF YOU WANT A NIGHT THAT ACTUALLY GOES CRAZY, THIS IS WHERE YOU NEED TO BE.</p>
+              <p><strong>FRIDAY NIGHT IS CALLING, AND IT'S NOT ASKING NICELY.</strong> NO SLEEP DEC5 IS THE PARTY EVERYONE IS GONNA BE TALKING ABOUT. IF YOU WANT A NIGHT THAT ACTUALLY GOES CRAZY, THIS IS WHERE YOU NEED TO BE.</p>
               <div className="event-detail-item">
                 <strong>NYC</strong> — Location drops day of
               </div>
               <div className="event-detail-item">
-                <strong>Saturday, December 6</strong> — 9:00 PM until late
+                <strong>Friday, December 5</strong> — 9:00 PM until late
               </div>
               <div className="event-detail-item">
                 <strong>HIGH SCHOOL ONLY</strong>
@@ -490,7 +490,7 @@ export default function Home() {
         <div className="footer-links">
           <a href="/about">About</a> · <a href="/terms">Terms</a> · <a href="/refunds">Refunds</a>
         </div>
-        <div>&copy; {new Date().getFullYear()} NO SLEEP DEC6</div>
+        <div>&copy; {new Date().getFullYear()} NO SLEEP DEC5</div>
       </footer>
       
       <StatusIndicator />

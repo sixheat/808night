@@ -7,7 +7,7 @@ function getStripe() {
     const allEnvKeys = Object.keys(process.env).sort();
     const stripeEnvKeys = allEnvKeys.filter(k => k.includes('STRIPE'));
     const nextEnvKeys = allEnvKeys.filter(k => k.startsWith('NEXT_'));
-    
+
     console.error('=== ENV DEBUG ===');
     console.error('STRIPE_SECRET_KEY not found');
     console.error('Total env vars:', allEnvKeys.length);
@@ -15,7 +15,7 @@ function getStripe() {
     console.error('NEXT_ env vars:', nextEnvKeys);
     console.error('All env var keys (first 20):', allEnvKeys.slice(0, 20));
     console.error('=================');
-    
+
     throw new Error("STRIPE_SECRET_KEY environment variable is not set. Please check Vercel environment variables and redeploy.");
   }
   return new Stripe(secretKey);
@@ -79,12 +79,12 @@ export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
   try {
     const { tier, qty } = req.body || {};
-    
+
     // Early bid is closed - reject early bird requests
     if (tier === "early") {
       return res.status(400).json({ error: "Early Bird tickets are no longer available." });
     }
-    
+
     const qtyInt = Math.max(1, Math.min(parseInt(qty || 1, 10), 10));
     const isVip = tier === "vip";
     const unitAmount = isVip ? 6767 : 4141; // cents ($67.67 for VIP, $41.41 for GA)
@@ -105,7 +105,7 @@ export default async function handler(req, res) {
         {
           price_data: {
             currency: "usd",
-            product_data: { name: isVip ? "NO SLEEP DEC6 — VIP - Skip The Line" : "NO SLEEP DEC6 — General Admission" },
+            product_data: { name: isVip ? "NO SLEEP DEC5 — VIP - Skip The Line" : "NO SLEEP DEC5 — General Admission" },
             unit_amount: unitAmount
           },
           quantity: qtyInt
@@ -118,8 +118,8 @@ export default async function handler(req, res) {
       consent_collection: { terms_of_service: "none" },
       custom_text: { submit: { message: "No refunds. High school only. Security enforced." } },
       metadata: {
-        event: "NO SLEEP DEC6",
-        eventName: "NO SLEEP DEC6",
+        event: "NO SLEEP DEC5",
+        eventName: "NO SLEEP DEC5",
         eventLocation: "Location drops day of",
         tier: metadataTier,
         ticketType: isVip ? "VIP - Skip The Line" : "General Admission",

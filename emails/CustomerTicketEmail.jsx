@@ -81,7 +81,7 @@ export function CustomerTicketEmail({
           Questions? Reply to this email and the team will help.
         </Text>
         <Text style={{ fontSize: "12px", color: "#64748b", marginTop: "18px" }}>
-          NO SLEEP DEC6 — High school only. No re-entry. No refunds.
+          NO SLEEP DEC5 — High school only. No re-entry. No refunds.
         </Text>
       </Container>
     </Html>

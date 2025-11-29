@@ -40,7 +40,7 @@ export default async function handler(req, res) {
     const customerName =
       session.customer_details?.name || session.customer_details?.email || "Guest";
     const eventName =
-      session.metadata?.eventName || session.metadata?.event || "NO SLEEP DEC6";
+      session.metadata?.eventName || session.metadata?.event || "NO SLEEP DEC5";
     const eventLocation =
       session.metadata?.eventLocation || session.metadata?.city || "Location drops day of";
     const ticketType =
