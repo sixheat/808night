@@ -2852,4 +2852,280 @@ a:hover {
     .status-title-modern {
         font-size: 32px;
     }
+}/* Crextio Dashboard Theme */
+:root {
+    --crex-bg: #FDFBF6;
+    --crex-card-bg: #FFFFFF;
+    --crex-card-dark: #1A1A1A;
+    --crex-accent: #F5D485;
+    --crex-text-main: #111111;
+    --crex-text-muted: #888888;
+    --crex-border-radius: 32px;
+}
+
+.crextio-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #FDFBF6 0%, #F4E7C3 100%);
+    color: var(--crex-text-main);
+    font-family: 'Inter', sans-serif;
+    padding: 40px 20px;
+}
+
+.crextio-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Header */
+.crextio-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.crextio-brand {
+    font-size: 18px;
+    font-weight: 600;
+    padding: 12px 24px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 99px;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.crextio-nav {
+    display: flex;
+    gap: 24px;
+    background: #fff;
+    padding: 8px 24px;
+    border-radius: 99px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+}
+
+.crextio-nav-item {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--crex-text-muted);
+    cursor: pointer;
+}
+
+.crextio-nav-item.active {
+    background: #1A1A1A;
+    color: #fff;
+    padding: 4px 16px;
+    border-radius: 99px;
+}
+
+/* Main Title Area */
+.crextio-title-section {
+    margin-bottom: 40px;
+}
+
+.crextio-title {
+    font-size: 56px;
+    font-weight: 400;
+    margin: 0 0 24px 0;
+    letter-spacing: -1.5px;
+}
+
+/* Top Stats Row */
+.crextio-stats-row {
+    display: flex;
+    justify-content: flex-end;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.crextio-stat-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.stat-value-large {
+    font-size: 48px;
+    font-weight: 300;
+}
+
+.stat-label-small {
+    font-size: 12px;
+    color: var(--crex-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Main Grid */
+.crextio-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(2, minmax(300px, auto));
+    gap: 24px;
+}
+
+.crex-card {
+    background: var(--crex-card-bg);
+    border-radius: var(--crex-border-radius);
+    padding: 32px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.crex-card:hover {
+    transform: translateY(-4px);
+}
+
+/* Profile Card (Overall Status) */
+.card-profile {
+    grid-column: span 3;
+    grid-row: span 2;
+    background: linear-gradient(180deg, #E0E0E0 0%, #C0C0C0 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0;
+}
+
+.profile-image-area {
+    flex: 1;
+    background-image: url('/cover.jpg');
+    /* Use existing cover */
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.profile-info {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(20px);
+    padding: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.status-badge-large {
+    background: rgba(0, 0, 0, 0.4);
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 99px;
+    display: inline-block;
+    backdrop-filter: blur(10px);
+    margin-bottom: 16px;
+}
+
+/* Chart Card */
+.card-chart {
+    grid-column: span 5;
+    grid-row: span 1;
+}
+
+.chart-bars {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    height: 120px;
+    margin-top: 40px;
+}
+
+.chart-bar {
+    width: 8px;
+    background: #1A1A1A;
+    border-radius: 4px;
+}
+
+.chart-bar.accent {
+    background: var(--crex-accent);
+}
+
+/* Timer Card (Uptime) */
+.card-timer {
+    grid-column: span 4;
+    grid-row: span 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.timer-circle {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 12px solid #F2F2F2;
+    border-top-color: var(--crex-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    font-weight: 600;
+}
+
+/* Dark Card (Services) */
+.card-dark {
+    grid-column: span 4;
+    grid-row: span 2;
+    /* Taller to match ref */
+    background: var(--crex-card-dark);
+    color: #fff;
+}
+
+.dark-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 32px;
+}
+
+.dark-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.dark-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dark-check {
+    margin-left: auto;
+    color: var(--crex-accent);
+}
+
+/* Bottom Row Fillers */
+.card-bottom-1 {
+    grid-column: span 3;
+    grid-row: span 1;
+}
+
+.card-bottom-2 {
+    grid-column: span 5;
+    grid-row: span 1;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .crextio-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
+
+    .card-profile,
+    .card-chart,
+    .card-timer,
+    .card-dark,
+    .card-bottom-1,
+    .card-bottom-2 {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+
+    .crextio-stats-row {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
 }
