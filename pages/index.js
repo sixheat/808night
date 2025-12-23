@@ -19,15 +19,15 @@ export default function Home() {
       <main
         style={{
           minHeight: "100vh",
+          width: "100vw",
           display: "flex",
-          flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
           backgroundColor: "black",
-          color: "white",
           padding: 0,
           margin: 0,
           textAlign: "center",
+          overflow: "hidden",
         }}
       >
         <div
@@ -35,29 +35,21 @@ export default function Home() {
             position: "relative",
             width: "100vw",
             height: "100vh",
-            overflow: "hidden",
           }}
         >
           <Image
             src="/appreciated.png"
             alt="NO SLEEP NOV21"
-            width={1200}
-            height={1600}
+            fill
+            sizes="100vw"
             style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
+              objectFit: "contain", // keep full image visible without cropping
+              objectPosition: "center",
+              backgroundColor: "black",
             }}
             priority
           />
         </div>
-
-        <h1 style={{ fontSize: "28px", margin: "16px 0 8px" }}>
-          NO SLEEP NOV21
-        </h1>
-        <p style={{ fontSize: "16px", maxWidth: "480px", margin: "0 auto" }}>
-          This event has ended. Ticket sales and the site are now closed.
-        </p>
       </main>
     </>
   );
