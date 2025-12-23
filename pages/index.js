@@ -25,15 +25,17 @@ export default function Home() {
           justifyContent: "center",
           backgroundColor: "black",
           color: "white",
-          padding: "16px",
+          padding: 0,
+          margin: 0,
           textAlign: "center",
         }}
       >
         <div
           style={{
-            maxWidth: "600px",
-            width: "100%",
-            marginBottom: "24px",
+            position: "relative",
+            width: "100vw",
+            height: "100vh",
+            overflow: "hidden",
           }}
         >
           <Image
@@ -43,15 +45,14 @@ export default function Home() {
             height={1600}
             style={{
               width: "100%",
-              height: "auto",
-              borderRadius: "16px",
+              height: "100%",
               objectFit: "cover",
             }}
             priority
           />
         </div>
 
-        <h1 style={{ fontSize: "28px", marginBottom: "8px" }}>
+        <h1 style={{ fontSize: "28px", margin: "16px 0 8px" }}>
           NO SLEEP NOV21
         </h1>
         <p style={{ fontSize: "16px", maxWidth: "480px", margin: "0 auto" }}>
